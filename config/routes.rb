@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :products, only: [:show] do
+    get 'backlog', to: 'product_backlogs#show', as: :backlog
+  end
 end
