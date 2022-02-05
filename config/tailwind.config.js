@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+        mplus: ['"Rounded Mplus 1c"', ...defaultTheme.fontFamily.sans],
       },
     },
   },
