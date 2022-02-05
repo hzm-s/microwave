@@ -1,5 +1,6 @@
 module ApplicationHelper
   include IconHelper
+  include ComponentHelper
 
   WEB_FONT_URL = 'https://fonts.googleapis.com/earlyaccess/roundedmplus1c.css'.freeze
 

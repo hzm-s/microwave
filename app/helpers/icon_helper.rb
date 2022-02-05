@@ -7,10 +7,10 @@ module IconHelper
 
   def icon(name, opts = {})
     options = { size: 24, color: 'text-gray-500', class: nil }.merge(opts)
-    css_classes = options[:color]
-    css_classes << " #{options[:class]}" if options[:class]
+    css_class = options[:color]
+    css_class << " #{options[:class]}" if options[:class]
 
-    content_tag(:i, svg(name, size: options[:size]).html_safe, class: css_classes)
+    content_tag(:i, svg(name, size: options[:size]).html_safe, class: css_class)
   end
 
   def svg(name, size: 24)
