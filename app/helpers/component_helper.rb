@@ -20,23 +20,29 @@ module ComponentHelper
 
   def dd_dropdown_options(extra = {})
     position_css_class = DROPDOWN_POSITION_CLASSES[extra.delete(:position) || :left]
-
-    build_dom_options(
-      {
-        data: {
-          dropdown_target: 'menu',
-          transition_enter_from: 'opacity-0 scale-95',
-          transition_enter_to: 'opacity-100 scale-100',
-          transition_leave_from: 'opacity-100 scale-100',
-          transition_leave_to: 'opacity-0 scale-95',
+    built =
+      build_dom_options(
+        {
+          data: { dropdown_target: 'menu' },
+          class: "hidden absolute z-50 #{position_css_class}",
         },
-        class: "hidden transition transform absolute #{position_css_class}",
-      },
-      extra
-    )
+        extra
+      )
+    return built unless extra.delete(:transition) == true
+
+    build_dom_options(built, { data: transition_options, class: 'transition' })
   end
 
   private
+
+  def transition_options
+    {
+      transition_enter_from: 'opacity-0 scale-95',
+      transition_enter_to: 'opacity-100 scale-100',
+      transition_leave_from: 'opacity-100 scale-100',
+      transition_leave_to: 'opacity-0 scale-95',
+    }
+  end
 
   def build_dom_options(default, extra)
     css_class = default.delete(:class) || ''
