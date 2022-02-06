@@ -5,14 +5,14 @@ module ComponentHelper
   }
 
   def dd_container_options(extra = {})
-    merge_options_with_css_class(
+    build_dom_options(
       { data: { controller: 'dropdown' }, class: 'relative inline-block' },
       extra
     )
   end
 
   def dd_trigger_options(extra = {})
-    merge_options_with_css_class(
+    build_dom_options(
       { data: { action: 'dropdown#toggle click@window->dropdown#hide' } },
       extra
     )
@@ -21,7 +21,7 @@ module ComponentHelper
   def dd_dropdown_options(extra = {})
     position_css_class = DROPDOWN_POSITION_CLASSES[extra.delete(:position) || :left]
 
-    merge_options_with_css_class(
+    build_dom_options(
       {
         data: {
           dropdown_target: 'menu',
@@ -38,7 +38,7 @@ module ComponentHelper
 
   private
 
-  def merge_options_with_css_class(default, extra)
+  def build_dom_options(default, extra)
     css_class = default.delete(:class) || ''
     extra_css_class = extra.delete(:class)
     css_class << " #{extra_css_class}" if extra_css_class
