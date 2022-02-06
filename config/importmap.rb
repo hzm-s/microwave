@@ -9,3 +9,4 @@ pin "stimulus-dropdown" # @2.0.0
 pin "hotkeys-js" # @3.8.7
 pin "stimulus-use" # @0.50.0
 pin "stimulus-reveal-controller" # @4.0.0
+pin "sortablejs" # @1.14.0
