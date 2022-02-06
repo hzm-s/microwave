@@ -18,31 +18,54 @@ module ComponentHelper
     )
   end
 
-  def dd_dropdown_options(extra = {})
+  def dd_target_options(extra = {})
     position_css_class = DROPDOWN_POSITION_CLASSES[extra.delete(:position) || :left]
-    built =
-      build_dom_options(
-        {
-          data: { dropdown_target: 'menu' },
-          class: "hidden absolute z-50 #{position_css_class}",
-        },
-        extra
-      )
-    return built unless extra.delete(:transition) == true
+    build_dom_options(
+      {
+        data: { dropdown_target: 'menu' },
+        class: "hidden absolute z-50 #{position_css_class}",
+      },
+      extra
+    )
+  end
 
-    build_dom_options(built, { data: transition_options, class: 'transition' })
+  def rv_container_options(extra = {})
+    build_dom_options(
+      { data: { controller: 'reveal', reveal_hidden_class: 'hidden' } },
+      extra
+    )
+  end
+
+  def rv_trigger_options(extra = {})
+    build_dom_options(
+      { data: { action: 'click->reveal#toggle' } },
+      extra
+    )
+  end
+
+  def rv_target_options(extra = {})
+    build_dom_options(
+      { data: { reveal_target: 'item' }, class: 'hidden' },
+      extra
+    )
+  end
+
+  def transition_options(extra = {})
+    build_dom_options(
+      {
+        data: {
+          transition_enter_from: 'opacity-0 scale-95',
+          transition_enter_to: 'opacity-100 scale-100',
+          transition_leave_from: 'opacity-100 scale-100',
+          transition_leave_to: 'opacity-0 scale-95',
+        },
+        class: 'transition',
+      },
+      extra
+    )
   end
 
   private
-
-  def transition_options
-    {
-      transition_enter_from: 'opacity-0 scale-95',
-      transition_enter_to: 'opacity-100 scale-100',
-      transition_leave_from: 'opacity-100 scale-100',
-      transition_leave_to: 'opacity-0 scale-95',
-    }
-  end
 
   def build_dom_options(default, extra)
     css_class = default.delete(:class) || ''
