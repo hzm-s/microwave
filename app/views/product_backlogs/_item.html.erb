@@ -1,0 +1,32 @@
+<%= content_tag :div, rv_container_options(class: 'flex flex-row items-center px-1 py-2 gap-2') do %>
+  <span class="flex-none">
+    <%= icon :grip, class: 'cursor-move' %>
+  </span>
+  <div class="flex-grow flex flex-col">
+    <div class="flex flex-row justify-between">
+      <span class="text-xs text-stone-500 font-bold">
+        #<%= requirement.id %>
+      </span>
+    </div>
+    <p class="nf">
+      <%= requirement.description %>
+    </p>
+    <%= content_tag :div, rv_target_options do %>
+      <turbo-frame id="<%= "requirement_#{requirement.id}_acceptance_criteria" %>" src="<%= requirement_acceptance_criteria_path(requirement_id: requirement.id) %>" loading='lazy'>
+        <%= loading_svg %>
+      </turbo-frame>
+    <% end -%>
+  </div>
+  <div>
+    <%= content_tag :button, requirement.criteria_count, rv_trigger_options(class: 'block text-center border-2 border-solid border-gray-200 rounded w-8') %>
+  </div>
+  <div>
+    <span class="block text-center bg-sky-600 rounded-full w-8 text-lg text-white font-bold">
+      <%= requirement.size %>
+    </span>
+  </div>
+  <span class="flex-none">
+    <%= icon :thumbup, class: 'text-lime-500' %>
+  </span>
+  <%= link_to '#' do icon(:menu_dot) end %>
+<% end -%>

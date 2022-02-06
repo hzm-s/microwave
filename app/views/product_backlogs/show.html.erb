@@ -1,0 +1,49 @@
+<div class="flex mb-2">
+  <div class="mx-auto">
+    <div class="flex gap-1 items-center pl-4 pr-3 py-1 bg-gray-700 rounded-full border border-solid border-gray-500">
+      <h2 class="nf text-white font-bold">
+        microwave開発
+      </h2>
+      <%= link_to '#' do icon(:bars, size: 28, color: 'text-white') end %>
+    </div>
+  </div>
+</div>
+<div class="flex flex-row">
+  <div class="mx-auto w-full lg:w-[64rem] sheet">
+    <div class="flex justify-between">
+      <span class="flex-none"></span>
+      <h3 class="font-bold">
+        プロダクトバックログ
+      </h3>
+      <span class="flex-none"></span>
+    </div>
+    <div class="mx-auto w-full lg:w-[56rem] my-1">
+      <div class="mx-auto flex w-full items-center rounded-full bg-gray-200 border border-solid border-gray-200">
+        <span class="text-xs font-bold rounded-l-full pl-3 pr-2">
+          プロダクトゴール
+        </span>
+        <div class="rounded-r-full bg-white flex-grow flex items-center justify-between pr-2">
+          <p class="nf leading-4 py-2 px-2">
+            プロダクトバックログが管理できる
+          </p>
+        </div>
+      </div>
+      <div class="mt-2 flex flex-col bg-white border-y border-solid border-gray-200 divide-y">
+        <%= render partial: 'item', collection: @requirements, as: :requirement %>
+      </div>
+      <div class="flex mt-2">
+        <div class="mx-auto lg:w-[40rem] bg-gray-100 px-5 py-3 rounded-lg">
+          <h3 class="font-bold text-sm text-stone-500 mb-2 flex items-center gap-x-1">
+            <%= icon(:plus, size: 18) %>新しいアイテム
+          <h3>
+          <%= form_with class: 'flex flex-col gap-2' do |f| %>
+            <%= f.text_area :description, class: 'nf block w-full' %>
+            <div class="flex-none">
+              <%= f.button class: 'btn btn-primary' %>
+            </div>
+          <% end -%>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
