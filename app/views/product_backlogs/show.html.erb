@@ -28,9 +28,9 @@
           </p>
         </div>
       </div>
-      <div class="mt-2 flex flex-col bg-white border-y border-solid border-gray-200 divide-y">
+      <%= content_tag :div, sort_list_options(url: 'dummy', group: 'pbl', class: 'mt-2 flex flex-col border-y border-solid border-gray-200 divide-y') do %>
         <%= render partial: 'item', collection: @requirements, as: :requirement %>
-      </div>
+      <% end %>
       <div class="flex mt-2">
         <div class="mx-auto lg:w-[40rem] bg-gray-100 px-5 py-3 rounded-lg">
           <h3 class="font-bold text-sm text-stone-500 mb-2 flex items-center gap-x-1">

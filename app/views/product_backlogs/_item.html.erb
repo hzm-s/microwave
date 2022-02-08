@@ -1,6 +1,6 @@
-<%= content_tag :div, rv_container_options(class: 'flex flex-row items-center px-1 py-2 gap-2') do %>
+<%= content_tag :div, rv_container_options(class: 'flex flex-row items-center px-1 py-2 gap-2 bg-white') do %>
   <span class="flex-none">
-    <%= icon :grip, class: 'cursor-move' %>
+    <%= icon :grip, class: 'cursor-move js-sortable-handle' %>
   </span>
   <div class="flex-grow flex flex-col">
     <div class="flex flex-row justify-between">
@@ -18,7 +18,7 @@
     <% end -%>
   </div>
   <div>
-    <%= content_tag :button, requirement.criteria_count, rv_trigger_options(class: 'block text-center border-2 border-solid border-gray-200 rounded w-8') %>
+    <%= content_tag :button, requirement.criteria_count, rv_trigger_options(class: 'block text-center border-2 border-solid border-rose-300 rounded w-8 hover:bg-rose-100') %>
   </div>
   <div>
     <span class="block text-center bg-sky-600 rounded-full w-8 text-lg text-white font-bold">
