@@ -15,12 +15,12 @@
       <%= yield %>
     </div>
     <div class="mt-5">
-      <%= content_tag(:div, rv_container_options) do %>
-        <%= content_tag(:button, 'toggle', rv_trigger_options(class: 'btn')) %>
+      <%= content_tag :div, component_attrs(:rv_container) do %>
+        <%= content_tag :button, 'toggle', component_attrs(:rv_trigger, { class: 'btn' }) %>
 
-        <%= content_tag(:div, dd_container_options) do %>
-          <%= content_tag(:button, 'dropdown', dd_trigger_options(class: 'btn')) %>
-          <%= content_tag(:div, dd_target_options(transition_options)) do %>
+        <%= content_tag :div, component_attrs(:dd_container) do %>
+          <%= content_tag :button, 'dropdown', component_attrs(:dd_trigger, { class: 'btn' }) %>
+          <%= content_tag :div, component_attrs(:dd_target, :dd_target_right) do %>
             <div class="bg-white rounded p-2 w-44 mt-1 flex flex-col">
               <a href="#" data-action="dropdown#toggle">Account settings</a>
               <a href="#" data-action="dropdown#toggle">Support</a>
@@ -29,7 +29,7 @@
           <% end -%>
         <% end -%>
 
-        <%= content_tag(:div, rv_target_options) do %>
+        <%= content_tag :div, component_attrs(:rv_target) do %>
           <p>Hey 👋</p>
           <p>You can have multiple items</p>
         <% end -%>
