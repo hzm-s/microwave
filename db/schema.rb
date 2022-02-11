@@ -10,11 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_07_101539) do
+ActiveRecord::Schema.define(version: 2022_02_11_082556) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "pbis", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "product_goal_id"
+    t.integer "status", default: 0, null: false
+    t.string "description", null: false
+    t.integer "size"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_goal_id"], name: "index_pbis_on_product_goal_id"
+  end
+
+  create_table "product_goals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "product_id"
+    t.string "content", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_product_goals_on_product_id"
+  end
 
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
@@ -23,4 +41,6 @@ ActiveRecord::Schema.define(version: 2022_02_07_101539) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "pbis", "product_goals"
+  add_foreign_key "product_goals", "products"
 end
