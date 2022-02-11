@@ -1,30 +1,40 @@
-<%= content_tag :div, rv_container_options(class: 'flex flex-row items-center px-1 py-2 gap-2 bg-white') do %>
+<%= content_tag :div, class: 'flex flex-row items-center px-1 py-2 gap-2 bg-white' do %>
   <span class="flex-none">
     <%= icon :grip, class: 'cursor-move js-sortable-handle' %>
   </span>
-  <div class="flex-grow flex flex-col">
-    <div class="flex flex-row justify-between">
-      <span class="text-xs text-stone-500 font-bold">
-        #<%= requirement.id %>
-      </span>
+  <%= content_tag :div, component_attrs(:rv_container, { class: 'flex-grow flex flex-row items-center gap-2' }) do %>
+    <div class="flex-grow flex flex-col">
+      <div class="flex flex-row justify-between">
+        <span class="text-sm text-label font-bold">
+          #<%= requirement.id %>
+        </span>
+      </div>
+      <p class="nf">
+        <%= requirement.description %>
+      </p>
+      <%= content_tag :div, component_attrs(:rv_target) do %>
+        <turbo-frame id="<%= "requirement_#{requirement.id}_acceptance_criteria" %>" src="<%= requirement_acceptance_criteria_path(requirement_id: requirement.id) %>" loading='lazy'>
+          <%= loading_svg %>
+        </turbo-frame>
+      <% end -%>
     </div>
-    <p class="nf">
-      <%= requirement.description %>
-    </p>
-    <%= content_tag :div, rv_target_options do %>
-      <turbo-frame id="<%= "requirement_#{requirement.id}_acceptance_criteria" %>" src="<%= requirement_acceptance_criteria_path(requirement_id: requirement.id) %>" loading='lazy'>
-        <%= loading_svg %>
-      </turbo-frame>
+    <div>
+      <%= content_tag :button, requirement.criteria_count, component_attrs(:rv_trigger, { class: 'btn-icon block text-center border-2 border-solid border-rose-300 rounded w-8' }) %>
+    </div>
+  <% end -%>
+  <%= content_tag :div, component_attrs(:dd_container) do %>
+    <%= content_tag :button, requirement.size, component_attrs(:dd_trigger, { class: 'btn-icon block text-center bg-sky-600 rounded-full w-8 text-lg text-white font-bold' }) %>
+    <%= content_tag :div, component_attrs(:dd_target, :dd_target_right) do %>
+      <div class="flex flex-col bg-white rounded-lg p-2 mt-1 w-[8rem] border border-1 border-gray-200 drop-shadow">
+        <p class="text-label mx-auto text-xs mb-1">
+          アイテムのサイズ
+        </p>
+        <%= form_with method: :patch do |f| %>
+          <%= f.select :size, %w(1 2 3 5 8 13 21 ?).map { |v| [v, v] }, {}, class: 'w-full', onchange: 'this.form.submit()' %>
+        <% end -%>
+      </div>
     <% end -%>
-  </div>
-  <div>
-    <%= content_tag :button, requirement.criteria_count, rv_trigger_options(class: 'block text-center border-2 border-solid border-rose-300 rounded w-8 hover:bg-rose-100') %>
-  </div>
-  <div>
-    <span class="block text-center bg-sky-600 rounded-full w-8 text-lg text-white font-bold">
-      <%= requirement.size %>
-    </span>
-  </div>
+  <% end -%>
   <span class="flex-none">
     <%= icon :thumbup, class: 'text-lime-500' %>
   </span>

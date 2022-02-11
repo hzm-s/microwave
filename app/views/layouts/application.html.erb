@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Microwave</title>
+    <title>microwave</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -13,27 +13,6 @@
   <body class="bg">
     <div class="mt-8">
       <%= yield %>
-    </div>
-    <div class="mt-5">
-      <%= content_tag :div, component_attrs(:rv_container) do %>
-        <%= content_tag :button, 'toggle', component_attrs(:rv_trigger, { class: 'btn' }) %>
-
-        <%= content_tag :div, component_attrs(:dd_container) do %>
-          <%= content_tag :button, 'dropdown', component_attrs(:dd_trigger, { class: 'btn' }) %>
-          <%= content_tag :div, component_attrs(:dd_target, :dd_target_right) do %>
-            <div class="bg-white rounded p-2 w-44 mt-1 flex flex-col">
-              <a href="#" data-action="dropdown#toggle">Account settings</a>
-              <a href="#" data-action="dropdown#toggle">Support</a>
-              <a href="#" data-action="dropdown#toggle">License</a>
-            </div>
-          <% end -%>
-        <% end -%>
-
-        <%= content_tag :div, component_attrs(:rv_target) do %>
-          <p>Hey 👋</p>
-          <p>You can have multiple items</p>
-        <% end -%>
-      <% end -%>
     </div>
   </body>
 </html>
