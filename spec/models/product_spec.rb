@@ -20,7 +20,8 @@ describe Product do
 
   describe '#add_goal' do
     it do
-      expect { product.add_goal('1st goal') }.to change(ProductGoal, :count).by(1)
+      product.add_goal('1st goal')
+      expect(product.reload.goals.map(&:content)).to eq ['1st goal']
     end
   end
 end
