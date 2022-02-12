@@ -1,16 +1,11 @@
 module ProductSupport
-  DEFAULT_ATTRS = {
-    product: {
-      name: 'product A',
-      vision: 'product vision',
-      goal: 'first goal of product',
-    },
-  }
+  def create_product(name: 'product', vision: 'vision', goals: %w(1st_goal))
+    Product.create!(name: name, vision: vision)
+      .tap { add_product_goals(_1, goals) }
+  end
 
-  def create_product(attrs = DEFAULT_ATTRS[:product])
-    attrs.slice(:name, :vision)
-      .then { Product.create!(_1) }
-      .tap { _1.set_goal(attrs[:goal]) if attrs[:goal] }
+  def add_product_goals(product, goals)
+    goals.each { product.add_goal(_1) }
   end
 end
 
