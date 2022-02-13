@@ -18,10 +18,11 @@ describe ProductGoal do
 
   describe 'add work' do
     it do
-      work = goal.add_work('desc of work').tap(&:reload)
+      work = goal.add_work('desc of work')
 
       aggregate_failures do
-        expect(work.product).to eq product
+        expect(work.errors).to be_empty
+        expect(work.reload.product).to eq product
         expect(work).to eq goal.works.last
         expect(work.description.to_s).to eq 'desc of work'
       end

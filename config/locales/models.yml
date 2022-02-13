@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    errors:
+      models:
+        work:
+        attributes:
+          product_goal_id:
+            blank: 'プロダクトゴールが設定されていません'
+

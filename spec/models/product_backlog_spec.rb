@@ -40,17 +40,17 @@ describe ProductBacklog do
 
   describe 'add item' do
     it do
-      expect { pbl.add_item('pbi') }.to raise_error described_class::NoCurrentProductGoal
+      expect { pbl.add_item('new item') }.to raise_error described_class::NoCurrentProductGoal
     end
 
-    context 'when goal is setted' do
+    context 'when goal has set' do
       before do
         pbl.set_goal(goal1.id)
       end
 
       it do
-        pbl.add_item('pbi_a')
-        expect(pbl.reload.items.to_a).to eq [ProductBacklogItem.last]
+        work = pbl.add_item('new item')
+        expect(pbl.reload.items.to_a).to eq [ProductBacklogItem.find_by(work_id: work.id)]
       end
     end
   end

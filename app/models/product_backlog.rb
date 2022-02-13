@@ -16,8 +16,23 @@ class ProductBacklog < ApplicationRecord
     raise NoCurrentProductGoal unless goal
 
     transaction do
-      work = goal.add_work(description)
-      rollback! unless self.items.build(work_id: work.id).save
+      add_work_to_goal!(description)
+        .then { add_work_as_item!(_1) }
     end
+  end
+
+  private
+
+  def add_work_to_goal!(description)
+    goal.add_work(description).tap do
+      rollback! if _1.errors.any?
+    end
+  end
+
+  def add_work_as_item!(work)
+    item = self.items.build(work_id: work.id)
+    rollback! unless item.save
+
+    work
   end
 end
