@@ -11,8 +11,8 @@ class ProductGoal < ApplicationRecord
     update!(achieved: true)
   end
 
-  def add_work(description)
-    self.works.create(product_id: product_id, description: description)
+  def build_work(description)
+    self.works.build(product_id: product_id, description: description)
   end
 
   def enable?

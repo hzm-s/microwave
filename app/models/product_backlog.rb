@@ -24,8 +24,8 @@ class ProductBacklog < ApplicationRecord
   private
 
   def add_work_to_goal!(description)
-    goal.add_work(description).tap do
-      rollback! if _1.errors.any?
+    goal.build_work(description).tap do
+      rollback! unless _1.save
     end
   end
 

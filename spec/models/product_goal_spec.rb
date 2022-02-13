@@ -16,14 +16,13 @@ describe ProductGoal do
 
   let(:goal) { product.goals.first }
 
-  describe 'add work' do
+  describe 'build work' do
     it do
-      work = goal.add_work('desc of work')
+      work = goal.build_work('desc of work')
 
       aggregate_failures do
-        expect(work.errors).to be_empty
-        expect(work.reload.product).to eq product
-        expect(work).to eq goal.works.last
+        expect(work.product_id).to eq product.id
+        expect(work.product_goal_id).to eq goal.id
         expect(work.description.to_s).to eq 'desc of work'
       end
     end
