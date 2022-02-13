@@ -14,6 +14,7 @@ gem 'tailwindcss-rails'
 gem 'jbuilder'
 gem 'tzinfo-data', platforms: %i[ mingw mswin x64_mingw jruby ]
 gem 'bootsnap', require: false
+gem 'rails-i18n'
 
 group :development, :test do
   gem 'debug', platforms: %i[ mri mingw x64_mingw ]
