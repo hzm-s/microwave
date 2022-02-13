@@ -8,23 +8,33 @@ describe ProductBacklog do
 
   describe 'set goal' do
     it do
-      pbl.set_goal(goal1.id)
-      expect(pbl.reload.goal).to eq goal1
+      aggregate_failures do
+        expect(pbl.set_goal(goal1.id)).to be true
+        expect(pbl.reload.goal).to eq goal1
+      end
     end
 
-    it do
-      pbl.set_goal(goal1.id)
-      expect { pbl.set_goal(goal2.id) }.to raise_error ProductGoal::CurrentGoalIsEnable
-    end
+    context 'when goal is already set' do
+      before do
+        pbl.set_goal(goal1.id)
+      end
 
-    it do
-      pbl.set_goal(goal1.id)
-      goal1.achieve
-      pbl.reload
+      it do
+        aggregate_failures do
+          expect(pbl.set_goal(goal2.id)).to be false
+          expect(pbl.reload.goal).to eq goal1
+        end
+      end
 
-      pbl.set_goal(goal2.id)
+      it do
+        goal1.achieve
+        pbl.reload
 
-      expect(pbl.reload.goal).to eq goal2
+        aggregate_failures do
+          expect(pbl.set_goal(goal2.id)).to be true
+          expect(pbl.reload.goal).to eq goal2
+        end
+      end
     end
   end
 
