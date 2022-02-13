@@ -11,11 +11,6 @@ class Work < ApplicationRecord
   end
 
   class << self
-    def create_for_product_goal(product_goal, attrs)
-      attrs.merge(product_id: product_goal.product_id, product_goal_id: product_goal.id)
-        .then { create(_1) }
-    end
-
     def max_number_of_product(product_id)
       where(product_id: product_id).maximum(:number).to_i
     end

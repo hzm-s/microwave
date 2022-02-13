@@ -14,7 +14,7 @@ class ProductGoal < ApplicationRecord
   end
 
   def add_work(description)
-    self.works.create_for_product_goal(self, description: description)
+    self.works.create(product_id: product_id, description: description)
   end
 
   def enable?
