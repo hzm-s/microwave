@@ -1,0 +1,2 @@
+class ProductBacklogItem < ApplicationRecord
+end
