@@ -1,6 +1,8 @@
 class Work < ApplicationRecord
   enum :status, { preparation: 0 }
 
+  belongs_to :product
+
   before_create do
     self.number = self.class.max_number_of_product(product_id) + 1
     self.status = :preparation
