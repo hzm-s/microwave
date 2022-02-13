@@ -2,23 +2,28 @@ require 'rails_helper'
 
 describe ProductGoal do
   let(:product) { create_product }
-  let(:goal) { product.goals.first }
 
-  describe '.create' do
+  describe 'initial' do
     it do
-      goal = described_class.create(content: 'product goal', achieved: true)
-      expect(goal.reload).to_not be_achieved
+      goal = described_class.create(content: '1st goal', achieved: true)
+
+      aggregate_failures do
+        expect(goal.content.to_s).to eq '1st goal'
+        expect(goal.reload).to_not be_achieved
+      end
     end
   end
 
-  describe '#add_work' do
+  let(:goal) { product.goals.first }
+
+  describe 'add work' do
     it do
       work = goal.add_work('desc of work').tap(&:reload)
 
       aggregate_failures do
         expect(work.product).to eq product
-        expect(work).to eq goal.works.first
-        expect(work.description).to eq 'desc of work'
+        expect(work).to eq goal.works.last
+        expect(work.description.to_s).to eq 'desc of work'
       end
     end
   end
