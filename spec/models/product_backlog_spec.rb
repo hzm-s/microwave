@@ -6,7 +6,7 @@ describe ProductBacklog do
   let(:goal1) { product.goals.first }
   let(:goal2) { product.goals.last }
 
-  describe '#set_goal' do
+  describe 'set goal' do
     it do
       pbl.set_goal(goal1.id)
       expect(pbl.reload.goal).to eq goal1
@@ -28,7 +28,7 @@ describe ProductBacklog do
     end
   end
 
-  describe '#add_item' do
+  describe 'add item' do
     it do
       expect { pbl.add_item('pbi') }.to raise_error described_class::NoCurrentProductGoal
     end

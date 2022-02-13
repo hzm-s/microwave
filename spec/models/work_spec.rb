@@ -4,7 +4,7 @@ describe Work do
   let(:product) { create_product }
   let(:goal) { product.goals.first }
 
-  describe '.create' do
+  describe 'initial' do
     it do
       work = described_class.create_for_product_goal(goal, description: 'description of work')
       aggregate_failures do
@@ -15,7 +15,7 @@ describe Work do
     end
   end
 
-  describe 'number' do
+  describe 'numbering' do
     let(:product_a) { create_product(goals: %w(1st_goal 2nd_goal)) }
     let(:goal_a_1) { product_a.goals.first }
     let(:goal_a_2) { product_a.goals.last }
