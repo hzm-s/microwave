@@ -8,8 +8,4 @@ class Product < ApplicationRecord
   before_create do
     self.build_backlog
   end
-
-  def add_goal(content)
-    self.goals.create!(content: content)
-  end
 end

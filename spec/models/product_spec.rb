@@ -17,11 +17,4 @@ describe Product do
   end
 
   let(:product) { described_class.create!(name: name, vision: vision) }
-
-  describe 'add goal' do
-    it do
-      product.add_goal('1st goal')
-      expect(product.reload.goals.map(&:content)).to eq ['1st goal']
-    end
-  end
 end
