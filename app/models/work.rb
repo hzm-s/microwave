@@ -1,4 +1,6 @@
 class Work < ApplicationRecord
+  attribute :description, :long_sentence
+
   enum :status, { preparation: 0 }
 
   belongs_to :product

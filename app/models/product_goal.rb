@@ -1,6 +1,8 @@
 class ProductGoal < ApplicationRecord
   class CurrentGoalIsEnable < StandardError; end
 
+  attribute :content, :long_sentence
+
   has_many :works, dependent: :destroy
 
   before_create do

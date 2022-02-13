@@ -4,8 +4,8 @@ module ProductSupport
       .tap { add_product_goals(_1, goals) }
   end
 
-  def add_product_goals(product, goals)
-    goals.each { product.add_goal(_1) }
+  def add_product_goals(product, goal_contents)
+    goal_contents.each { product.goals.create!(content: _1) }
   end
 end
 
