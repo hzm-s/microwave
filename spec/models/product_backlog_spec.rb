@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ProductBacklog do
-  let!(:product) { create_product(goals: %w(1st_goal 2nd_goal)) }
+  let!(:product) { create_product(goals: %w(1st_goal 2nd_goal), current_goal: nil) }
   let(:pbl) { described_class.find_by(product_id: product.id) }
   let(:goal1) { product.goals.first }
   let(:goal2) { product.goals.last }
