@@ -1,17 +1,19 @@
 require 'rails_helper'
 
-describe '/pbis' do
+describe '/product_backlog_items' do
   let(:product) { create_product }
 
   describe 'POST' do
     context 'given valid params' do
       it do
-        description = 'this is product backlog item'
-        post requirements_path, params: {
-          product_id: product.id,
-          description: description,
-        }
+        description = 'desc_of_1st_pbi'
 
+        post product_backlog_items_path, params: {
+          work: {
+            product_id: product.id,
+            description: description,
+          },
+        }
         get product_backlog_path(product_id: product.id)
 
         expect(response.body).to include description

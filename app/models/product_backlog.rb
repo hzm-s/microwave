@@ -9,7 +9,8 @@ class ProductBacklog < ApplicationRecord
   def set_goal(product_goal_id)
     return false if goal && goal.enable?
 
-    !!self.create_current_product_goal(product_goal_id: product_goal_id)
+    self.create_current_product_goal(product_goal_id: product_goal_id)
+      .then { _1.errors.empty? }
   end
 
   def add_item(description)
