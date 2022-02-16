@@ -6,24 +6,24 @@
     <div class="flex-grow flex flex-col">
       <div class="flex flex-row justify-between">
         <span class="text-sm text-label font-bold">
-          #<%= requirement.id %>
+          #<%= item.number %>
         </span>
       </div>
       <p class="nf">
-        <%= requirement.description %>
+        <%= item.description %>
       </p>
       <%= content_tag :div, component_attrs(:rv_target) do %>
-        <turbo-frame id="<%= "requirement_#{requirement.id}_acceptance_criteria" %>" src="<%= requirement_acceptance_criteria_path(requirement_id: requirement.id) %>" loading='lazy'>
+        <turbo-frame id="<%= "item_#{item.id}_acceptance_criteria" %>" src="<%= requirement_acceptance_criteria_path(requirement_id: item.id) %>" loading='lazy'>
           <%= loading_svg %>
         </turbo-frame>
       <% end -%>
     </div>
     <div>
-      <%= content_tag :button, requirement.criteria_count, component_attrs(:rv_trigger, { class: 'btn-icon block text-center border-2 border-solid border-rose-300 rounded w-8' }) %>
+      <%= content_tag :button, (0..6).to_a.sample, component_attrs(:rv_trigger, { class: 'btn-icon block text-center border-2 border-solid border-rose-300 rounded w-8' }) %>
     </div>
   <% end -%>
   <%= content_tag :div, component_attrs(:dd_container) do %>
-    <%= content_tag :button, requirement.size, component_attrs(:dd_trigger, { class: 'btn-icon block text-center bg-sky-600 rounded-full w-8 text-lg text-white font-bold' }) %>
+    <%= content_tag :button, item.size, component_attrs(:dd_trigger, { class: 'btn-icon block text-center bg-sky-600 rounded-full w-8 text-lg text-white font-bold' }) %>
     <%= content_tag :div, component_attrs(:dd_target, :dd_target_right) do %>
       <div class="flex flex-col bg-white rounded-lg p-2 mt-1 w-[8rem] border border-1 border-gray-200 drop-shadow">
         <p class="text-label mx-auto text-xs mb-1">
