@@ -1,0 +1,2 @@
+class AchievedProductGoal < ApplicationRecord
+end
