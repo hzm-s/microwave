@@ -16,5 +16,29 @@ describe Product do
     end
   end
 
+  describe 'validation' do
+    let(:valid) do
+      {
+        name: 'product name',
+        vision: 'product vision',
+      }
+    end
+
+    it do
+      model = described_class.new(valid)
+      expect(model).to be_valid
+    end
+
+    it do
+      model = described_class.new(valid.merge(name: 'a' * 51))
+      expect(model).to_not be_valid
+    end
+
+    it do
+      model = described_class.new(valid.merge(vision: 'a' * 1001))
+      expect(model).to_not be_valid
+    end
+  end
+
   let(:product) { described_class.create!(name: name, vision: vision) }
 end

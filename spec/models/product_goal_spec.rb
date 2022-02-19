@@ -28,12 +28,7 @@ describe ProductGoal do
     end
 
     it do
-      model = described_class.new(valid.merge(content: nil))
-      expect(model).to_not be_valid
-    end
-
-    it do
-      model = described_class.new(valid.merge(content: 'aa'))
+      model = described_class.new(valid.merge(content: 'a' * 1001))
       expect(model).to_not be_valid
     end
   end
