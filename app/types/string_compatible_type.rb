@@ -1,3 +1,5 @@
+require 'domain_object_construction_fail'
+
 class StringCompatibleType
   class << self
     def [](class_name)
@@ -10,16 +12,22 @@ class StringCompatibleType
   end
 
   def generate_type_class
-    Class.new(ActiveRecord::Type::String).tap { |c| define_cast_methods(c) }
+    Class.new(ActiveRecord::Type::String).tap { define_cast_methods(_1) }
   end
 
   def define_cast_methods(klass)
     klass.class_eval <<-CODE, __FILE__, __LINE__ + 1
       def cast(value)
+        return super if value.nil?
+
         if value.is_a?(#{@class_name})
           super(value.to_s)
         else
-          #{@class_name}.new(value)
+          begin
+            #{@class_name}.new(value)
+          rescue ArgumentError => e
+            DomainObjectConstructionFail.new(e)
+          end
         end
       end
 

@@ -5,26 +5,36 @@ describe ProductGoal do
 
   describe 'initial' do
     it do
-      goal = described_class.create(content: '1st goal', achieved: true)
+      goal = described_class.create(content: '1st goal', status: 'achieved')
 
       aggregate_failures do
+        expect(goal).to be_persisted
         expect(goal.content.to_s).to eq '1st goal'
-        expect(goal.reload).to_not be_achieved
+        expect(goal.status).to eq 'unachieved'
+        expect(goal.unachieved).to_not be_nil
+        expect(goal.achieved).to be_nil
       end
     end
   end
 
-  let(:goal) { product.goals.first }
+  describe 'validation' do
+    let(:valid) do
+      { content: 'the product goal' }
+    end
 
-  describe 'build work' do
     it do
-      work = goal.build_work('desc of work')
+      model = described_class.new(valid)
+      expect(model).to be_valid
+    end
 
-      aggregate_failures do
-        expect(work.product_id).to eq product.id
-        expect(work.product_goal_id).to eq goal.id
-        expect(work.description.to_s).to eq 'desc of work'
-      end
+    it do
+      model = described_class.new(valid.merge(content: nil))
+      expect(model).to_not be_valid
+    end
+
+    it do
+      model = described_class.new(valid.merge(content: 'aa'))
+      expect(model).to_not be_valid
     end
   end
 end

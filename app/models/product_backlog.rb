@@ -1,0 +1,2 @@
+class ProductBacklog < ApplicationRecord
+end
