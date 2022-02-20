@@ -30,12 +30,16 @@ class ProductGoal < ApplicationRecord
   def update_status_detail
     return if persisted? && !status_changed?
 
+    status_detail&.mark_for_destruction
+
     if unachieved?
-      self.achieved&.mark_for_destruction
       self.unachieved || self.build_unachieved
     else
-      self.unachieved&.mark_for_destruction
       self.achieved || self.build_achieved(achieved_at: Time.current)
     end
+  end
+
+  def status_detail
+    self.unachieved || self.achieved
   end
 end
