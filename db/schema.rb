@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_17_104911) do
+ActiveRecord::Schema.define(version: 2022_02_20_034406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -22,13 +22,19 @@ ActiveRecord::Schema.define(version: 2022_02_17_104911) do
     t.index ["product_goal_id"], name: "index_achieved_product_goals_on_product_goal_id"
   end
 
+  create_table "product_backlog_targets", force: :cascade do |t|
+    t.uuid "product_backlog_id"
+    t.bigint "unachieved_product_goal_id"
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_backlog_id"], name: "index_product_backlog_targets_on_product_backlog_id", unique: true
+    t.index ["unachieved_product_goal_id"], name: "index_product_backlog_targets_on_unachieved_product_goal_id"
+  end
+
   create_table "product_backlogs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "product_id"
-    t.bigint "unachieved_product_goal_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_product_backlogs_on_product_id", unique: true
-    t.index ["unachieved_product_goal_id"], name: "index_product_backlogs_on_unachieved_product_goal_id"
   end
 
   create_table "product_goals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -53,8 +59,9 @@ ActiveRecord::Schema.define(version: 2022_02_17_104911) do
   end
 
   add_foreign_key "achieved_product_goals", "product_goals"
+  add_foreign_key "product_backlog_targets", "product_backlogs"
+  add_foreign_key "product_backlog_targets", "unachieved_product_goals"
   add_foreign_key "product_backlogs", "products"
-  add_foreign_key "product_backlogs", "unachieved_product_goals"
   add_foreign_key "product_goals", "products"
   add_foreign_key "unachieved_product_goals", "product_goals"
 end

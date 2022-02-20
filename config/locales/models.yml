@@ -2,8 +2,8 @@ ja:
   activerecord:
     errors:
       models:
-        work:
-        attributes:
-          product_goal_id:
-            blank: 'プロダクトゴールが設定されていません'
+        product_backlog_target:
+          attributes:
+            unachieved_product_goal:
+              required: 達成済みのプロダクトゴールは設定できません
 
