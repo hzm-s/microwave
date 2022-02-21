@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :products, only: [:show] do
+  resources :products, only: [:index, :create] do
     get 'backlog', to: 'product_backlogs#show', as: :backlog
   end
 

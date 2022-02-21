@@ -3,7 +3,7 @@ class DomainObjectConstructionFail
     @exception = exception
   end
 
-  def error_message
+  def i18n_key
     @exception.message
   end
 end

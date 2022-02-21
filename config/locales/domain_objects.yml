@@ -1,0 +1,4 @@
+ja:
+  domain_objects:
+    errors:
+      invalid_name: は1~50文字で入力してください

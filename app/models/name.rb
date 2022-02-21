@@ -1,6 +1,6 @@
 class Name < Struct.new(:value)
   def initialize(value)
-    raise ArgumentError, 'length' unless (1..50).include?(value.to_s.size)
+    raise ArgumentError, 'invalid_name' unless (1..50).include?(value.to_s.size)
 
     super
   end

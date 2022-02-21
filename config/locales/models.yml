@@ -1,5 +1,12 @@
 ja:
   activerecord:
+    models:
+      product: プロダクト
+
+    attributes:
+      product:
+        name: プロダクト名
+
     errors:
       models:
         product_backlog_target:

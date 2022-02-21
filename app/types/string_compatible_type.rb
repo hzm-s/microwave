@@ -18,7 +18,7 @@ class StringCompatibleType
   def define_cast_methods(klass)
     klass.class_eval <<-CODE, __FILE__, __LINE__ + 1
       def cast(value)
-        return super if value.nil?
+        return nil if value.nil? || value.size == 0
 
         if value.is_a?(#{@class_name})
           super(value.to_s)

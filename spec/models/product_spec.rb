@@ -26,18 +26,23 @@ describe Product do
     end
 
     it do
-      model = described_class.new(valid)
-      expect(model).to be_valid
+      expect(described_class.new(valid)).to be_valid
     end
 
     it do
-      model = described_class.new(valid.merge(name: 'a' * 51))
-      expect(model).to_not be_valid
+      aggregate_failures do
+        expect(described_class.new(valid.merge(name: nil))).to_not be_valid
+        expect(described_class.new(valid.merge(name: ''))).to_not be_valid
+        expect(described_class.new(valid.merge(name: 'a' * 51))).to_not be_valid
+      end
     end
 
     it do
-      model = described_class.new(valid.merge(vision: 'a' * 1001))
-      expect(model).to_not be_valid
+      aggregate_failures do
+        expect(described_class.new(valid.merge(vision: nil))).to_not be_valid
+        expect(described_class.new(valid.merge(vision: ''))).to_not be_valid
+        expect(described_class.new(valid.merge(vision: 'a' * 1001))).to_not be_valid
+      end
     end
   end
 

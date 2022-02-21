@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe '/product_backlog_items' do
+xdescribe '/product_backlog_items' do
   let(:product) { create_product }
 
   describe 'POST' do
