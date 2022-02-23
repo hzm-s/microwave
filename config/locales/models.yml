@@ -6,6 +6,7 @@ ja:
     attributes:
       product:
         name: プロダクト名
+        vision: プロダクトビジョン
 
     errors:
       models:
