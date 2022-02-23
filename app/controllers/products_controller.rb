@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @products = Product.all
+    @products = 3.times.map { Product.last }
   end
 
   private

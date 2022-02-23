@@ -14,6 +14,10 @@
   .text-label {
     @apply font-bold text-stone-500;
   }
+
+  .group-hover-underline {
+    @apply group-hover:underline group-hover:decoration-solid;
+  }
 }
 
 @layer base {
@@ -45,8 +49,12 @@
   }
 
   .sheet {
-    @apply p-5 shadow;
+    @apply p-5 border border-solid border-gray-100 shadow shadow-gray-100/50;
     border-radius: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+  .sheet-sm {
+    @apply p-4 rounded-lg border border-solid border-gray-100 shadow shadow-gray-100/50;
     background-color: rgba(255, 255, 255, 0.7);
   }
 

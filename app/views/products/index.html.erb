@@ -1,3 +1,5 @@
 <%= content_tag 'turbo-frame', id: 'products' do %>
-  <%= render partial: 'summary', collection: @products, as: :product %>
+  <div class="grid grid-cols-2 gap-2">
+    <%= render partial: 'summary', collection: @products, as: :product %>
+  </div>
 <% end -%>
