@@ -1,4 +1,4 @@
-<%= content_tag 'turbo-frame', id: 'products' do %>
+<%= turbo_frame_tag :products do %>
   <div class="grid grid-cols-2 gap-2">
     <%= render partial: 'summary', collection: @products, as: :product %>
   </div>

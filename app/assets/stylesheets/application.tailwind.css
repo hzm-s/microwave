@@ -22,6 +22,10 @@
   .field-with-error {
     @apply border-red-400 ring-red-200 ring-4;
   }
+
+  .link {
+    @apply text-sky-600 underline hover:text-sky-500;
+  }
 }
 
 @layer base {
@@ -67,6 +71,9 @@
   .sheet-sm {
     @apply p-4 rounded-lg border border-solid border-gray-100 shadow shadow-gray-100/50;
     background-color: rgba(255, 255, 255, 0.7);
+  }
+  .sheet-form {
+    @apply p-4 rounded-lg border border-solid border-gray-100 shadow shadow-gray-100/50 bg-gray-100/75;
   }
 
   .text-divider-center {

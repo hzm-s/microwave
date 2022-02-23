@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root to: 'dashboard#show'
 
-  resources :products, only: [:index, :create] do
+  get 'dashboard', to: 'dashboard#show', as: :dashboard
+
+  resources :products, only: [:index, :create, :new] do
     get 'backlog', to: 'product_backlogs#show', as: :backlog
   end
 

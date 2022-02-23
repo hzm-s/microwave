@@ -1,40 +1,34 @@
-<div class="flex mb-2">
-  <div class="mx-auto">
-    <div class="flex gap-1 items-center pl-4 pr-3 py-1 bg-gray-700 rounded-full border border-solid border-gray-500">
-      <h2 class="nf text-white font-bold">
-        microwave開発
-      </h2>
-      <%= link_to '#' do icon(:bars, size: 28, color: 'text-white') end %>
-    </div>
-  </div>
+<div class="flex gap-1 items-center pl-4 pr-3 py-1 bg-gray-700 rounded-full border border-solid border-gray-500">
+  <h2 class="nf text-white font-bold">
+    microwave開発
+  </h2>
+  <%= link_to '#' do icon(:bars, size: 28, color: 'text-white') end %>
 </div>
-<div class="flex flex-row">
-  <div class="mx-auto w-full lg:w-[64rem] sheet">
-    <div class="flex justify-between">
-      <span class="flex-none"></span>
-      <h3 class="font-bold">
-        プロダクトバックログ
-      </h3>
-      <span class="flex-none"></span>
-    </div>
-    <div class="mx-auto w-full lg:w-[56rem] my-1">
-      <div class="mx-auto flex w-full items-center rounded-full bg-gray-200 border border-solid border-gray-200">
-        <span class="text-xs font-bold rounded-l-full pl-3 pr-2">
-          プロダクトゴール
-        </span>
-        <div class="rounded-r-full bg-white flex-grow flex items-center justify-between pr-2">
-          <p class="nf leading-4 py-2 px-2">
-            プロダクトバックログが管理できる
-          </p>
-        </div>
+<div class="sheet">
+  <div class="flex justify-between">
+    <span class="flex-none"></span>
+    <h3 class="font-bold">
+      プロダクトバックログ
+    </h3>
+    <span class="flex-none"></span>
+  </div>
+  <div class="mx-auto w-full lg:w-[56rem] my-1">
+    <div class="mx-auto flex w-full items-center rounded-full bg-gray-200 border border-solid border-gray-200">
+      <span class="text-xs font-bold rounded-l-full pl-3 pr-2">
+        プロダクトゴール
+      </span>
+      <div class="rounded-r-full bg-white flex-grow flex items-center justify-between pr-2">
+        <p class="nf leading-4 py-2 px-2">
+          プロダクトバックログが管理できる
+        </p>
       </div>
-      <%= content_tag :div, sort_list_options(url: 'dummy', group: 'pbl', class: 'mt-2 flex flex-col border-y border-solid border-gray-200 divide-y') do %>
-        <%= render partial: 'item', collection: @items, as: :item %>
-      <% end %>
-      <div class="flex mt-2">
-        <div class="mx-auto">
-          <%= content_tag 'turbo-frame', nil, id: 'new-product-backlog-item', src: new_product_backlog_item_path(product_id: params[:product_id]) %>
-        </div>
+    </div>
+    <%= content_tag :div, sort_list_options(url: 'dummy', group: 'pbl', class: 'mt-2 flex flex-col border-y border-solid border-gray-200 divide-y') do %>
+      <%= render partial: 'item', collection: @items, as: :item %>
+    <% end %>
+    <div class="flex mt-2">
+      <div class="mx-auto">
+        <%= content_tag 'turbo-frame', nil, id: 'new-product-backlog-item', src: new_product_backlog_item_path(product_id: params[:product_id]) %>
       </div>
     </div>
   </div>

@@ -1,15 +1,19 @@
 class ProductsController < ApplicationController
+  def index
+    @products = Product.all
+  end
+
+  def new
+    @product = Product.new
+  end
+
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to products_path
+      redirect_to dashboard_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
-  end
-
-  def index
-    @products = 3.times.map { Product.last }
   end
 
   private
