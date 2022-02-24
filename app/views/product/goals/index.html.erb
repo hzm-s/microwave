@@ -1,0 +1,5 @@
+<%= turbo_frame_tag :product_goals do %>
+  <div class="flex flex-col border-y border-solid border-gray-200 divide-y">
+    <%= render partial: 'goal', collection: @goals, as: :goal %>
+  </div>
+<% end -%>

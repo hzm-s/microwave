@@ -1,8 +1,8 @@
-<a href="#" class="group block sheet-sm">
+<%= link_to product_path(product.id), class: 'group block sheet-sm', target: '_top' do %>
   <h3 class="nf font-bold text-xl group-hover-underline">
     <%= product.name %>
   </h3>
-  <p class="nf text-sm text-gray-500 mt-2">
+  <p class="nf text-sm text-gray-500 mt-1">
     <%= product.vision %>
   </p>
-</a>
+<% end -%>

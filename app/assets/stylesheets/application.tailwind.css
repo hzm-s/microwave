@@ -64,7 +64,7 @@
   }
 
   .sheet {
-    @apply p-5 border border-solid border-gray-100 shadow shadow-gray-100/50;
+    @apply pt-7 px-12 pb-9 border border-solid border-gray-100 shadow shadow-gray-100/50;
     border-radius: 1.5rem;
     background-color: rgba(255, 255, 255, 0.7);
   }

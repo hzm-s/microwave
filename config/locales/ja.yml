@@ -146,6 +146,7 @@ ja:
       update: 更新する
     nav:
       back: 戻る
+      change: 変更する
   number:
     currency:
       format:
