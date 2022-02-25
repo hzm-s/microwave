@@ -3,12 +3,7 @@ class Product < ApplicationRecord
   attribute :vision, :long_sentence
 
   has_many :goals, class_name: 'ProductGoal'
-  has_one :backlog, class_name: 'ProductBacklog'
 
   validates :name, presence: true, domain_object: true
   validates :vision, presence: true, domain_object: true
-
-  before_create do
-    self.build_backlog
-  end
 end

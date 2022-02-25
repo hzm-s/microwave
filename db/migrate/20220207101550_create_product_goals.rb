@@ -3,7 +3,6 @@ class CreateProductGoals < ActiveRecord::Migration[7.0]
     create_table :product_goals, id: :uuid do |t|
       t.references :product, type: :uuid, foreign_key: true
       t.string :content, null: false
-      t.integer :status, null: false, default: 0
       t.datetime :updated_at
     end
   end

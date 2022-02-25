@@ -12,7 +12,6 @@ describe Product do
         expect(product.name.to_s).to eq name
         expect(product.vision.to_s).to eq vision
         expect(product.goals).to be_empty
-        expect(product.reload.backlog).to_not be_nil
       end
     end
   end
