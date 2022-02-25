@@ -2,3 +2,5 @@ ja:
   domain_objects:
     errors:
       invalid_name: は1~50文字で入力してください
+      invalid_short_sentence: は2~500文字で入力してください
+      invalid_long_sentence: は3~1000文字で入力してください
