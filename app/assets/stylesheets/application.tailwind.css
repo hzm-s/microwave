@@ -4,7 +4,7 @@
 
 @layer utilities {
   .bg {
-    @apply bg-gradient-to-r from-amber-50 to-yellow-50;
+    @apply bg-amber-50;
   }
 
   .nf {
@@ -66,11 +66,11 @@
   .sheet {
     @apply pt-7 px-12 pb-9 border border-solid border-gray-100 shadow shadow-gray-100/50;
     border-radius: 1.5rem;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.9);
   }
   .sheet-sm {
     @apply p-4 rounded-lg border border-solid border-gray-100 shadow shadow-gray-100/50;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.9);
   }
   .sheet-form {
     @apply p-4 rounded-lg border border-solid border-gray-100 shadow shadow-gray-100/50 bg-gray-100/75;
