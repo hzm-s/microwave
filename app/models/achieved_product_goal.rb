@@ -1,2 +1,0 @@
-class AchievedProductGoal < ApplicationRecord
-end

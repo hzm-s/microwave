@@ -10,17 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_07_101560) do
+ActiveRecord::Schema.define(version: 2022_02_07_101550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
-
-  create_table "achieved_product_goals", force: :cascade do |t|
-    t.uuid "product_goal_id"
-    t.datetime "achieved_at", precision: 6, null: false
-    t.index ["product_goal_id"], name: "index_achieved_product_goals_on_product_goal_id"
-  end
 
   create_table "product_goals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "product_id"
@@ -36,13 +30,5 @@ ActiveRecord::Schema.define(version: 2022_02_07_101560) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "unachieved_product_goals", force: :cascade do |t|
-    t.uuid "product_goal_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.index ["product_goal_id"], name: "index_unachieved_product_goals_on_product_goal_id"
-  end
-
-  add_foreign_key "achieved_product_goals", "product_goals"
   add_foreign_key "product_goals", "products"
-  add_foreign_key "unachieved_product_goals", "product_goals"
 end
