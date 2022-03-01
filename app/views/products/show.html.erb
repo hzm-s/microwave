@@ -12,6 +12,9 @@
       <%= ProductGoal.model_name.human %>
     </h3>
     <%= turbo_frame_tag :product_goals, src: product_goals_path(product_id: @product) %>
+    <%= turbo_frame_tag :new_product_goal do %>
+      <%= link_to t('.new'), new_product_goal_path(product_id: @product.id) %>
+    <% end -%>
   </div>
 </div>
 <%= link_to(dashboard_path, class: 'mt-3 link') { icon_with_text :reply, t('helpers.nav.back') } %>

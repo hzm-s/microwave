@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#show', as: :dashboard
 
   resources :products, only: [:index, :show, :new, :create] do
-    resources :goals, only: [:index], module: :product
+    resources :goals, only: [:index, :new], module: :product
 
     get 'backlog', to: 'product_backlogs#show', as: :backlog
   end
