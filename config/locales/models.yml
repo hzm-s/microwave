@@ -9,6 +9,9 @@ ja:
         name: プロダクト名
         vision: プロダクトビジョン
 
+      product_goal:
+        content: プロダクトゴール
+
     errors:
       models:
         product_backlog_target:

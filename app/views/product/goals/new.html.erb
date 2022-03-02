@@ -1,0 +1,16 @@
+<%= turbo_frame_tag :new_product_goal do %>
+  <div class="sheet-form">
+    <%= form_with model: ProductGoal.new, scope: :product_goal, url: product_goals_path do |f| %>
+      <div class="flex flex-col gap-2 mb-3">
+        <div class="flex flex-col">
+          <%= f.label :content %>
+          <%= f.text_area :content, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="flex flex-row items-center gap-5">
+        <%= f.button class: 'btn btn-primary' %>
+        <%= link_to t('helpers.nav.cancel'), product_path(Product.first), class: 'link' %>
+      </div>
+    <% end -%>
+  </div>
+<% end -%>
