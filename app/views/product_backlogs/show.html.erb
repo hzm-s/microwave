@@ -28,7 +28,7 @@
     <% end %>
     <div class="flex mt-2">
       <div class="mx-auto">
-        <%= content_tag 'turbo-frame', nil, id: 'new-product-backlog-item', src: new_product_backlog_item_path(product_id: params[:product_id]) %>
+        <%= turbo_frame_tag :new_product_backlog_item, src: new_product_backlog_item_path(product_id: params[:product_id]) %>
       </div>
     </div>
   </div>
