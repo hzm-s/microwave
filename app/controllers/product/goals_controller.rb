@@ -3,8 +3,13 @@ class Product::GoalsController < ApplicationController
     @goals = ProductGoal.where(product_id: current_product.id)
   end
 
+  def new
+    @goal = ProductGoal.new
+  end
+
   def create
     ProductGoal.create!(product_goal_params.merge(product_id: current_product.id))
+    redirect_to product_path(current_product.id)
   end
 
   private
