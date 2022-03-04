@@ -1,7 +1,6 @@
 module ProductSupport
-  def create_product(name: 'product', vision: 'vision', goals: %w(1st_goal), current_goal: 0)
+  def create_product(name: 'product', vision: 'vision')
     Product.create!(name: name, vision: vision)
-      .tap { create_product_goals(_1, goals) }
   end
 
   def create_product_goals(product, goal_contents)
