@@ -1,4 +1,6 @@
 class Product::GoalsController < ApplicationController
+  helper_method :current_product
+
   def index
     @goals = ProductGoal.where(product_id: current_product.id)
   end
