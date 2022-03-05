@@ -15,7 +15,7 @@ module IconHelper
     </svg>
   )
 
-  def loading_svg(color: 'text-gray-500')
+  def spinner(color: 'text-gray-500')
     content_tag(:svg, class: "animate-spin h-5 w-5 #{color}", xmlsns: 'http://www.w3.org/2000/svg', fill: 'none', 'viewBox': '0 0 24 24') { LOADING_SVG_PATH.html_safe }
   end
 

@@ -14,7 +14,7 @@
       </p>
       <%= content_tag :div, component_attrs(:rv_target) do %>
         <%= turbo_frame_tag "item_#{item.id}_acceptance_criteria", src: requirement_acceptance_criteria_path(requirement_id: item.id), data: { loading: :lazy } %>
-          <%= loading_svg %>
+          <%= spinner %>
         <% end -%>
       <% end -%>
     </div>

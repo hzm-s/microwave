@@ -6,3 +6,8 @@ ja:
   products:
     show:
       new_product_goal: 新しいプロダクトゴールを追加する
+
+  product:
+    goals:
+      index:
+        empty: まだプロダクトゴールはありません

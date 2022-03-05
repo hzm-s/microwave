@@ -11,7 +11,9 @@
     <h3 class="text-label mb-1">
       <%= ProductGoal.model_name.human %>
     </h3>
-    <%= turbo_frame_tag :product_goals, src: product_goals_path(product_id: @product) %>
+    <%= turbo_frame_tag :product_goals, src: product_goals_path(product_id: @product) do %>
+      <%= spinner %>
+    <% end -%>
     <div class="mt-3">
       <%= turbo_frame_tag :new_product_goal do %>
         <%= link_to t('.new_product_goal'), new_product_goal_path(product_id: @product.id), class: 'btn-sm btn-primary-outline' %>
