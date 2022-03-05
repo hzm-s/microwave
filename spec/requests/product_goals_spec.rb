@@ -10,7 +10,7 @@ describe '/products/:id/goals' do
 
     context 'given valid params' do
       it do
-        post product_goals_path(product_id: product.id), params: { product_goal: valid }
+        post product_goals_path(product_id: product.id, format: :turbo_stream), params: { product_goal: valid }
 
         get product_goals_path(product_id: product.id)
         aggregate_failures do
