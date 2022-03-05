@@ -8,8 +8,12 @@ class Product::GoalsController < ApplicationController
   end
 
   def create
-    ProductGoal.create!(product_goal_params.merge(product_id: current_product.id))
-    redirect_to product_path(current_product.id)
+    @goal = ProductGoal.new(product_goal_params.merge(product_id: current_product.id))
+    if @goal.save
+      redirect_to product_path(current_product.id)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private

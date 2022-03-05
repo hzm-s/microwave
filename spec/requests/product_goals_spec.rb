@@ -18,5 +18,12 @@ describe '/products/:id/goals' do
         end
       end
     end
+
+    context 'given invalid params' do
+      it do
+        post product_goals_path(product_id: product.id), params: { product_goal: valid.merge(content: '') }
+        expect(response.body).to include I18n.t('errors.messages.blank')
+      end
+    end
   end
 end
