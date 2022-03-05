@@ -1,0 +1,10 @@
+<%= turbo_stream.replace :product_goals do %>
+  <%= turbo_frame_tag :product_goals, src: product_goals_path(product_id: @goal.product_id) do %>
+    <%= spinner %>
+  <% end -%>
+<% end -%>
+<%= turbo_stream.replace :new_product_goal do %>
+  <%= turbo_frame_tag :new_product_goal do %>
+    <%= link_to t('products.show.new_product_goal'), new_product_goal_path(product_id: @goal.product_id), class: 'btn-sm btn-primary-outline' %>
+  <% end -%>
+<% end -%>
