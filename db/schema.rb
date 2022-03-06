@@ -16,10 +16,38 @@ ActiveRecord::Schema.define(version: 2022_02_07_101550) do
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
+  create_table "accounts", force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["provider", "uid"], name: "index_accounts_on_provider_and_uid"
+    t.index ["user_id", "provider"], name: "index_accounts_on_user_id_and_provider", unique: true
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "active_users", force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.string "email", null: false
+    t.string "name", null: false
+    t.string "initials", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_active_users_on_email", unique: true
+    t.index ["user_id"], name: "index_active_users_on_user_id"
+  end
+
+  create_table "cancelled_users", force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.datetime "cancelled_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_cancelled_users_on_user_id"
+  end
+
   create_table "product_goals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "product_id"
+    t.uuid "product_id", null: false
     t.string "content", null: false
-    t.datetime "updated_at", precision: 6
+    t.datetime "created_at", precision: 6, null: false
     t.index ["product_id"], name: "index_product_goals_on_product_id"
   end
 
@@ -30,5 +58,12 @@ ActiveRecord::Schema.define(version: 2022_02_07_101550) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+  end
+
+  add_foreign_key "accounts", "users"
+  add_foreign_key "active_users", "users"
+  add_foreign_key "cancelled_users", "users"
   add_foreign_key "product_goals", "products"
 end
