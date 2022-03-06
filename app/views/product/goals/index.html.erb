@@ -3,7 +3,7 @@
     <% if @goals.any? %>
       <%= render partial: 'goal', collection: @goals, as: :goal %>
     <% else %>
-      <div class="bg-gray-100 text-gray-500 py-5 text-center">
+      <div class="text-gray-500 py-5 text-center">
         <%= t('.empty') %>
       </div>
     <% end -%>

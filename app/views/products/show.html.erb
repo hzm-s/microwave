@@ -6,8 +6,10 @@
     </h2>
     <%= simple_format(@product.vision.to_s, class: 'nf text-gray-500 leading-5') %>
   </div>
-  <%= link_to t('helpers.nav.change'), '#', class: 'link text-sm text-right' %>
-  <div class="mt-10">
+  <div class="text-right">
+    <%= link_to t('helpers.nav.change'), '#', class: 'link text-sm' %>
+  </div>
+  <div class="mt-3">
     <h3 class="text-label mb-1">
       <%= ProductGoal.model_name.human %>
     </h3>
