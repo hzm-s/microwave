@@ -9,6 +9,7 @@ class CreateActiveUsers < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
+    add_index :active_users, [:user_id], unique: true, name: 'unique_key_active_users_on_user_id'
     add_index :active_users, [:email], unique: true
   end
 end

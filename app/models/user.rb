@@ -1,2 +1,21 @@
 class User < ApplicationRecord
+  has_one :active_user, dependent: :destroy
+  has_one :cancelled_user, dependent: :destroy
+
+  delegate :name, :email, :accounts, to: :user_with_status
+
+  class << self
+    def activate(name:, email:, account:)
+      active_user = ActiveUser.new_with_account(name: name, email: email, account: account)
+      new { _1.active_user = active_user }
+    end
+  end
+
+  def user_with_status
+    @__user_with_status ||= [active_user, cancelled_user].compact.first
+  end
+
+  def active?
+    user_with_status.is_a?(ActiveUser)
+  end
 end
