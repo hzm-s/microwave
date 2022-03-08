@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_one :active_user, dependent: :destroy
+  has_one :active_user, dependent: :destroy, autosave: true
   has_one :cancelled_user, dependent: :destroy
 
   delegate :name, :email, :accounts, to: :user_with_status
@@ -8,6 +8,13 @@ class User < ApplicationRecord
     def activate(name:, email:, account:)
       active_user = ActiveUser.new_with_account(name: name, email: email, account: account)
       new { _1.active_user = active_user }
+    end
+  end
+
+  def cancel
+    self.tap do |user|
+      user.active_user.mark_for_destruction
+      user.build_cancelled_user
     end
   end
 
