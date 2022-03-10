@@ -21,7 +21,7 @@ class StringCompatibleType
         return nil if value.nil? || value.size == 0
 
         if value.is_a?(#{@class_name})
-          super(value.to_s)
+          value
         else
           begin
             #{@class_name}.new(value)

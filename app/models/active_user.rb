@@ -3,12 +3,16 @@ class ActiveUser < ApplicationRecord
 
   has_many :accounts, dependent: :destroy
 
+  validates :name, presence: true
+  validates :email, presence: true, domain_object: true
+
   class << self
     def new_with_account(name:, email:, account:)
-      new(name: name, email: email) do |active_user|
-        active_user.initials = active_user.email.initials
-        active_user.accounts << account
-      end
+      candidate = new(name: name, email: email) { _1.accounts << account }
+
+      return candidate unless candidate.valid?
+
+      candidate.tap { _1.initials = _1.email.initials }
     end
   end
 end

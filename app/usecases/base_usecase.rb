@@ -5,13 +5,13 @@ class BaseUsecase
     end
   end
 
-  def success(payload)
-    payload.merge(succeeded?: true)
+  def succeeded(result = {})
+    result.merge(succeeded?: true)
       .then { OpenStruct.new(_1) }
   end
 
-  def fail
-    payload.merge(succeeded?: false)
+  def failed(result = {})
+    result.merge(succeeded?: false)
       .then { OpenStruct.new(_1) }
   end
 end
