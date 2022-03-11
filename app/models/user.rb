@@ -9,6 +9,10 @@ class User < ApplicationRecord
       active_user = ActiveUser.new_with_account(name: name, email: email, account: account)
       new { _1.active_user = active_user }
     end
+
+    def find_active_by_account(account)
+      joins(active_user: :accounts).find_by(accounts: { provider: account.provider, uid: account.uid })
+    end
   end
 
   def cancel

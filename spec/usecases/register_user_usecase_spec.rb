@@ -3,7 +3,7 @@ require 'rails_helper'
 describe RegisterUserUsecase do
   let(:name) { 'user name' }
   let(:email) { 'user@example.com' }
-  let(:account) { { provider: 'google', uid: 'uid123456789' } }
+  let(:account) { Account.new(provider: 'google', uid: 'uid123456789') }
 
   context 'valid params' do
     it do
