@@ -2,6 +2,7 @@ ja:
   dashboard:
     show:
       new_product: 新しいプロダクトを登録する
+      new_team: 新しいチームを登録する
 
   products:
     show:

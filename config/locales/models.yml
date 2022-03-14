@@ -3,6 +3,7 @@ ja:
     models:
       product: プロダクト
       product_goal: プロダクトゴール
+      team: チーム
 
     attributes:
       product:
@@ -11,6 +12,9 @@ ja:
 
       product_goal:
         content: プロダクトゴール
+
+      team:
+        name: チーム名
 
     errors:
       models:
