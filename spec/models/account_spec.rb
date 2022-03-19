@@ -4,6 +4,7 @@ describe Account do
   describe 'validation' do
     let(:valid) do
       {
+        active_user: ActiveUser.new,
         provider: 'google',
         uid: 'uid1234567890',
       }

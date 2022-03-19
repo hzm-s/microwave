@@ -15,6 +15,7 @@ describe ActiveUser do
   describe 'validation' do
     let(:valid) do
       {
+        user: User.new,
         email: 'user@example.com',
         name: 'user name',
       }
