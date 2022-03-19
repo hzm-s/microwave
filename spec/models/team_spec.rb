@@ -6,14 +6,14 @@ describe Team do
     let(:user) { sign_up }
 
     it do
-      member = TeamMember.new(user: user, role: :product_owner)
+      member = TeamMember.new(user: user, roles: team_member_roles(:po))
       team.add_member(member)
 
       aggregate_failures do
         expect(team.members.size).to eq 1
         expect(team.members[0].team).to eq team
         expect(team.members[0].user).to eq user
-        expect(team.members[0].role).to eq 'product_owner'
+        expect(team.members[0].roles.map(&:role)).to eq %w(product_owner)
       end
     end
   end
