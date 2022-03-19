@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get 'backlog', to: 'product_backlogs#show', as: :backlog
   end
 
-  resources :teams, only: [:index, :new]
+  resources :teams, only: [:index, :new, :create]
 
   resources :product_backlog_items, only: [:new, :create]
 

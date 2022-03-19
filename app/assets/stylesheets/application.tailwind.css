@@ -15,6 +15,10 @@
     @apply font-bold text-stone-500;
   }
 
+  .toggle-label {
+    @apply font-normal text-lg text-stone-600;
+  }
+
   .group-hover-underline {
     @apply group-hover:underline group-hover:decoration-solid;
   }

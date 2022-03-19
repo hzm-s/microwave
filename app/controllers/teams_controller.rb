@@ -4,6 +4,20 @@ class TeamsController < ApplicationController
   end
 
   def new
-    @team = Team.new
+    @form = RegisterTeamForm.new
+  end
+
+  def create
+    @form = RegisterTeamForm.new(register_params)
+    if @form.valid?
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  private
+
+  def register_params
+    params.require(:form).permit(*RegisterTeamForm.parameters)
   end
 end
