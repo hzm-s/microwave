@@ -1,6 +1,7 @@
 class TeamMember < ApplicationRecord
   belongs_to :team
   belongs_to :user
+  has_many :roles, class_name: 'TeamMemberRole'
 
-  enum :role, { product_owner: 0, developer: 1, scrum_master: 2 }
+  validates :roles, team_member_role_set: true
 end
