@@ -5,6 +5,7 @@ class OauthCallbackController < ApplicationController
       email: auth_hash.email,
       account: Account.new(auth_hash.account),
     )
+    sign_in(result.user)
     redirect_to dashboard_path
   end
 
