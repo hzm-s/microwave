@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: 'dashboard#show'
 
+  get 'auth/:provider/callback', to: 'oauth_callback#create', as: :oauth_callback
+
   get 'dashboard', to: 'dashboard#show', as: :dashboard
 
   resources :products, only: [:index, :show, :new, :create] do
