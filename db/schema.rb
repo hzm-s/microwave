@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_14_093706) do
+ActiveRecord::Schema.define(version: 2022_03_19_012508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -59,14 +59,23 @@ ActiveRecord::Schema.define(version: 2022_03_14_093706) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "team_member_roles", force: :cascade do |t|
+    t.bigint "team_member_id"
+    t.integer "role", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["team_member_id", "role"], name: "index_team_member_roles_on_team_member_id_and_role", unique: true
+    t.index ["team_member_id"], name: "index_team_member_roles_on_team_member_id"
+  end
+
   create_table "team_members", force: :cascade do |t|
     t.uuid "team_id"
     t.uuid "user_id"
-    t.integer "role", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["team_id"], name: "index_team_members_on_team_id"
     t.index ["user_id"], name: "index_team_members_on_user_id"
+    t.index ["user_id"], name: "unique_key_team_members_on_user_id", unique: true
   end
 
   create_table "teams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -83,6 +92,7 @@ ActiveRecord::Schema.define(version: 2022_03_14_093706) do
   add_foreign_key "active_users", "users"
   add_foreign_key "cancelled_users", "users"
   add_foreign_key "product_goals", "products"
+  add_foreign_key "team_member_roles", "team_members"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
 end
