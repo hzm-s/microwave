@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root to: 'dashboard#show'
 
   get 'auth/:provider/callback', to: 'oauth_callback#create', as: :oauth_callback
+  get :sign_in, to: 'sessions#new', as: :sign_in
 
   get 'dashboard', to: 'dashboard#show', as: :dashboard
 
