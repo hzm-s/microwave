@@ -3,11 +3,6 @@ require 'rails_helper'
 describe '/auth/:provider/callback' do
   let!(:other_user) { sign_up }
 
-  let(:session) { double(:session, '[]=': nil) }
-  before do
-    allow_any_instance_of(OauthCallbackController).to receive(:session) { session }
-  end
-
   context 'when NOT signed up' do
     let(:auth_hash) { mock_auth_hash }
 
@@ -21,8 +16,7 @@ describe '/auth/:provider/callback' do
     end
 
     it do
-      expect_to_reset_session
-      expect(session).to receive('[]=')
+      expect_any_instance_of(OauthCallbackController).to receive(:sign_in)
       get oauth_callback_path(provider: auth_hash['provider'])
     end
 
@@ -47,8 +41,7 @@ describe '/auth/:provider/callback' do
 
     context 'when NOT signed in' do
       it do
-        expect_to_reset_session
-        expect(session).to receive('[]=').with(:user_id, user.id)
+        expect_any_instance_of(OauthCallbackController).to receive(:sign_in).with(user)
         get oauth_callback_path(provider: auth_hash['provider'])
       end
 
@@ -61,25 +54,10 @@ describe '/auth/:provider/callback' do
     context 'when signed in' do
       before { sign_in(user) }
 
-      xit do
-        expect_to_not_reset_session
-        expect(session).to_not receive('[]=')
+      it do
+        expect_any_instance_of(OauthCallbackController).to_not receive(:sign_in)
         get oauth_callback_path(provider: auth_hash['provider'])
       end
     end
-  end
-
-  private
-
-  def expect_to_reset_session
-    expect_target_receiver.to receive(:reset_session)
-  end
-
-  def expect_to_not_reset_session
-    expect_target_receiver.to_not receive(:reset_session)
-  end
-
-  def expect_target_receiver
-    expect_any_instance_of(OauthCallbackController)
   end
 end

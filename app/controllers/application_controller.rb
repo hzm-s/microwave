@@ -5,6 +5,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def require_guest
+    if signed_in?
+      redirect_to dashboard_path
+    end
+  end
+
   def signed_in?
     !!current_user
   end

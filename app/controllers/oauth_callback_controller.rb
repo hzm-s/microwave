@@ -1,4 +1,6 @@
 class OauthCallbackController < ApplicationController
+  before_action :require_guest
+
   def create
     result = FindOrRegisterUserUsecase.perform(
       name: auth_hash.name,
