@@ -21,9 +21,14 @@ describe '/auth/:provider/callback' do
     end
 
     it do
-      expect_reset_session
+      expect_to_reset_session
       expect(session).to receive('[]=')
       get oauth_callback_path(provider: auth_hash['provider'])
+    end
+
+    it do
+      get oauth_callback_path(provider: auth_hash['provider'])
+      expect(response).to redirect_to dashboard_path
     end
   end
 
@@ -40,16 +45,41 @@ describe '/auth/:provider/callback' do
         .and change(Account, :count).by(0)
     end
 
-    it do
-      expect_reset_session
-      expect(session).to receive('[]=').with(:user_id, user.id)
-      get oauth_callback_path(provider: auth_hash['provider'])
+    context 'when NOT signed in' do
+      it do
+        expect_to_reset_session
+        expect(session).to receive('[]=').with(:user_id, user.id)
+        get oauth_callback_path(provider: auth_hash['provider'])
+      end
+
+      it do
+        get oauth_callback_path(provider: auth_hash['provider'])
+        expect(response).to redirect_to dashboard_path
+      end
+    end
+
+    context 'when signed in' do
+      before { sign_in(user) }
+
+      xit do
+        expect_to_not_reset_session
+        expect(session).to_not receive('[]=')
+        get oauth_callback_path(provider: auth_hash['provider'])
+      end
     end
   end
 
   private
 
-  def expect_reset_session
-    expect_any_instance_of(OauthCallbackController).to receive(:reset_session)
+  def expect_to_reset_session
+    expect_target_receiver.to receive(:reset_session)
+  end
+
+  def expect_to_not_reset_session
+    expect_target_receiver.to_not receive(:reset_session)
+  end
+
+  def expect_target_receiver
+    expect_any_instance_of(OauthCallbackController)
   end
 end
