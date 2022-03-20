@@ -1,8 +1,11 @@
 require 'rails_helper'
 
 describe '/auth/:provider/callback' do
+  let!(:other_user) { sign_up }
+
+  let(:session) { double(:session, '[]=': nil) }
   before do
-    sign_up # other user has signed up
+    allow_any_instance_of(OauthCallbackController).to receive(:session) { session }
   end
 
   context 'when NOT signed up' do
@@ -18,7 +21,8 @@ describe '/auth/:provider/callback' do
     end
 
     it do
-      expect_any_instance_of(OauthCallbackController).to receive(:sign_in)
+      expect_reset_session
+      expect(session).to receive('[]=')
       get oauth_callback_path(provider: auth_hash['provider'])
     end
   end
@@ -37,8 +41,15 @@ describe '/auth/:provider/callback' do
     end
 
     it do
-      expect_any_instance_of(OauthCallbackController).to receive(:sign_in).with(user)
+      expect_reset_session
+      expect(session).to receive('[]=').with(:user_id, user.id)
       get oauth_callback_path(provider: auth_hash['provider'])
     end
+  end
+
+  private
+
+  def expect_reset_session
+    expect_any_instance_of(OauthCallbackController).to receive(:reset_session)
   end
 end
