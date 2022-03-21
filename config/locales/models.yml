@@ -42,3 +42,6 @@ ja:
       register_team_form:
         name: チーム名
         roles: あなたの役割
+      team_member_form:
+        roles: あなたの役割
+

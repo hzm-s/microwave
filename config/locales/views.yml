@@ -20,3 +20,9 @@ ja:
   teams:
     new:
       title: 新しいチーム
+
+  team:
+    members:
+      new:
+        title: チームへ参加
+
