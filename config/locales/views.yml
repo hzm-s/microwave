@@ -16,3 +16,7 @@ ja:
     goals:
       index:
         empty: まだプロダクトゴールはありません
+
+  teams:
+    new:
+      title: 新しいチーム
