@@ -2,7 +2,7 @@ module TeamMemberRolesAccessible
   extend ActiveSupport::Concern
 
   class_methods do
-    def parameters
+    def team_member_roles_parameters
       { roles_attributes: [:role] }
     end
   end

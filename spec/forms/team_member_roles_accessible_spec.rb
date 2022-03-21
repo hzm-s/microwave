@@ -10,7 +10,7 @@ describe TeamMemberRolesAccessible do
   end
 
   it do
-    expect(form_class.parameters).to eq({ roles_attributes: [:role] })
+    expect(form_class.team_member_roles_parameters).to eq({ roles_attributes: [:role] })
   end
 
   it do
