@@ -1,0 +1,15 @@
+<div class="flex flex-col">
+  <%= f.label :roles %>
+  <%= f.fields_for :roles do |rf| %>
+    <div>
+      <% role_name = f.object.role_name_at(rf.index) %>
+      <%= rf.check_box :role, { class: 'form-control' }, role_name, '' %>
+      <%= rf.label :role, t(role_name, scope: [:activerecord, :enums, :team_member_roles, :roles]), class: 'toggle-label' %>
+    </div>
+  <% end -%>
+  <div class="mt-1 error-message">
+    <% errors.full_messages_for(:roles).each do |msg| %>
+      <p><%= msg %></p>
+    <% end -%>
+  </div>
+</div>
