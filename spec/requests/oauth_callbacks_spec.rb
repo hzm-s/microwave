@@ -3,6 +3,11 @@ require 'rails_helper'
 describe '/auth/:provider/callback' do
   let!(:other_user) { sign_up }
 
+  before do
+    @session = {}
+    allow_any_instance_of(OauthCallbackController).to receive(:session) { @session }
+  end
+
   context 'when NOT signed up' do
     let(:auth_hash) { mock_auth_hash }
 
@@ -16,8 +21,10 @@ describe '/auth/:provider/callback' do
     end
 
     it do
-      expect_any_instance_of(OauthCallbackController).to receive(:sign_in)
       get oauth_callback_path(provider: auth_hash['provider'])
+
+      registered_account = Account.new(provider: auth_hash['provider'], uid: auth_hash['uid'])
+      expect(@session[:user_id]).to eq User.find_active_by_account(registered_account).id
     end
 
     it do
@@ -41,8 +48,8 @@ describe '/auth/:provider/callback' do
 
     context 'when NOT signed in' do
       it do
-        expect_any_instance_of(OauthCallbackController).to receive(:sign_in).with(user)
         get oauth_callback_path(provider: auth_hash['provider'])
+        expect(@session[:user_id]).to eq user.id
       end
 
       it do
