@@ -8,6 +8,8 @@ class Team::MembersController < ApplicationController
   def create
     @form = TeamMemberForm.new(team_member_params)
     if @form.valid?
+      team_member = TeamMember.new(user: current_user, roles: @form.selected_roles)
+      current_team.add_member(team_member)
     else
       render :new, status: :unprocessable_entity
     end
