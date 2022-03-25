@@ -25,10 +25,15 @@ describe '/team/:team_id/members' do
       end
     end
 
-    xcontext 'given invalid params' do
+    context 'given invalid params' do
       it do
-        post team_members_path(team_id: team.id), params: { form: valid.merge(name: '') }
-        expect(response.body).to include I18n.t('errors.messages.blank')
+        params = {
+          form: valid.deep_merge(
+            roles_attributes: { '1' => { role: 'developer' } }
+          )
+        }
+        post team_members_path(team_id: team.id), params: params
+        expect(response.body).to include I18n.t('activerecord.errors.models.team_member.attributes.roles.less_than_three')
       end
     end
   end
