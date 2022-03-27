@@ -9,6 +9,10 @@ module TeamSupport
     Team.create!(name: name)
   end
 
+  def team_member(user, *role_short_names)
+    TeamMember.new(user: user, roles: team_member_roles(*role_short_names))
+  end
+
   def team_member_roles(*role_short_names)
     role_short_names
       .map { ROLE_LONG_NAMES[_1] }

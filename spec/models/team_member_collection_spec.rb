@@ -7,17 +7,17 @@ describe TeamMemberCollection do
   describe 'product owner' do
     it do
       aggregate_failures do
-        expect(build_members([])).to have_appropriate_number_of_product_owner
-        expect(build_members([team_member(user_a, :po)])).to have_appropriate_number_of_product_owner
-        expect(build_members([team_member(user_a, :po, :sm)])).to have_appropriate_number_of_product_owner
+        expect(build_members([])).to have_appropriate_number_of_role(:product_owner, 1)
+        expect(build_members([team_member(user_a, :po)])).to have_appropriate_number_of_role(:product_owner, 1)
+        expect(build_members([team_member(user_a, :po, :sm)])).to have_appropriate_number_of_role(:product_owner, 1)
         expect(build_members([
           team_member(user_a, :po),
           team_member(user_b, :po),
-        ])).to_not have_appropriate_number_of_product_owner
+        ])).to_not have_appropriate_number_of_role(:product_owner, 1)
         expect(build_members([
           team_member(user_a, :po),
           team_member(user_b, :sm, :po),
-        ])).to_not have_appropriate_number_of_product_owner
+        ])).to_not have_appropriate_number_of_role(:product_owner, 1)
       end
     end
   end
@@ -25,17 +25,17 @@ describe TeamMemberCollection do
   describe 'scrum master' do
     it do
       aggregate_failures do
-        expect(build_members([])).to have_appropriate_number_of_scrum_master
-        expect(build_members([team_member(user_a, :sm)])).to have_appropriate_number_of_scrum_master
-        expect(build_members([team_member(user_a, :sm, :dev)])).to have_appropriate_number_of_scrum_master
+        expect(build_members([])).to have_appropriate_number_of_role(:scrum_master, 1)
+        expect(build_members([team_member(user_a, :sm)])).to have_appropriate_number_of_role(:scrum_master, 1)
+        expect(build_members([team_member(user_a, :sm, :dev)])).to have_appropriate_number_of_role(:scrum_master, 1)
         expect(build_members([
           team_member(user_a, :sm),
           team_member(user_b, :sm),
-        ])).to_not have_appropriate_number_of_scrum_master
+        ])).to_not have_appropriate_number_of_role(:scrum_master, 1)
         expect(build_members([
           team_member(user_a, :sm),
           team_member(user_b, :po, :sm),
-        ])).to_not have_appropriate_number_of_scrum_master
+        ])).to_not have_appropriate_number_of_role(:scrum_master, 1)
       end
     end
   end
@@ -53,9 +53,9 @@ describe TeamMemberCollection do
 
     it do
       aggregate_failures do
-        expect(build_members([])).to have_appropriate_number_of_developers
-        expect(build_members([team_member(user_a, :dev)])).to have_appropriate_number_of_developers
-        expect(build_members([team_member(user_a, :dev, :sm)])).to have_appropriate_number_of_developers
+        expect(build_members([])).to have_appropriate_number_of_role(:developer, 8)
+        expect(build_members([team_member(user_a, :dev)])).to have_appropriate_number_of_role(:developer, 8)
+        expect(build_members([team_member(user_a, :dev, :sm)])).to have_appropriate_number_of_role(:developer, 8)
         expect(build_members([
           team_member(user_a, :po),
           team_member(user_b, :sm),
@@ -67,7 +67,7 @@ describe TeamMemberCollection do
           team_member(user_h, :dev),
           team_member(user_i, :dev),
           team_member(user_j, :dev),
-        ])).to have_appropriate_number_of_developers
+        ])).to have_appropriate_number_of_role(:developer, 8)
         expect(build_members([
           team_member(user_a, :po),
           team_member(user_b, :sm),
@@ -80,7 +80,7 @@ describe TeamMemberCollection do
           team_member(user_i, :dev),
           team_member(user_j, :dev),
           team_member(user_k, :dev),
-        ])).to_not have_appropriate_number_of_developers
+        ])).to_not have_appropriate_number_of_role(:developer, 8)
       end
     end
   end

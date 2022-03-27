@@ -22,6 +22,11 @@ ja:
           attributes:
             unachieved_product_goal:
               required: 達成済みのプロダクトゴールは設定できません
+        team:
+          attributes:
+            members:
+              appropriate_number_of_role: "%{role}は%{number}人まで参加できます"
+
         team_member:
           attributes:
             roles:
