@@ -24,5 +24,6 @@ ja:
   team:
     members:
       new:
-        title: チームへ参加
+        title: このチームへ参加
+        submit: 参加する
 

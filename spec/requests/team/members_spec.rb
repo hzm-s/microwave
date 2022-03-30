@@ -35,6 +35,15 @@ describe '/team/:team_id/members' do
         post team_members_path(team_id: team.id), params: params
         expect(response.body).to include I18n.t('activerecord.errors.models.team_member.attributes.roles.less_than_three')
       end
+
+      it do
+        team.tap do
+          _1.add_member(user: sign_up, roles: team_member_roles(:sm))
+          _1.save!
+        end
+        post team_members_path(team_id: team.id), params: { form: valid }
+        expect(response.body).to include t_model_error(:team, :members, :appropriate_number_of_role, role: 'スクラムマスター', number: 1)
+      end
     end
   end
 end

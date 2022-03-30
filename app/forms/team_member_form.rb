@@ -7,4 +7,8 @@ class TeamMemberForm
   def self.parameters
     [team_member_roles_parameters]
   end
+
+  def import_errors(team)
+    errors.add(:base, *team.errors[:members])
+  end
 end

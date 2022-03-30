@@ -1,19 +1,18 @@
 <% content_for(:page_class) { 'lg:w-[36rem] mt-8' } %>
-<h2 class="text-label text-divider-center mb-1">
+<h2 class="text-label text-divider-center">
   <%=t '.title' %>
 </h2>
+<div class="my-3 text-center">
+  <p class="nf text-lg font-bold bg-white rounded-lg p-3">
+    <%= current_team.name %>
+  </p>
+</div>
 <div class="sheet-form">
   <%= form_with model: @form, scope: :form, url: team_members_path(team_id: current_team.id) do |f| %>
-    <div class="flex flex-col gap-2 mb-3">
-      <div class="flex flex-col">
-        <%= label_tag Team.model_name.human %>
-        <p class="nf text-lg">
-          <%= current_team.name %>
-        </p>
-      </div>
+    <div class="flex flex-col gap-2 mb-1">
       <%= render partial: 'role_fields', locals: { f: f, errors: @form.errors } %>
     </div>
-    <%= f.button class: 'btn btn-primary' %>
+    <%= f.button t('.submit'), class: 'btn btn-primary' %>
   <% end -%>
 </div>
 <%= link_to(dashboard_path, class: 'mt-3 link') { icon_with_text :reply, t('helpers.nav.back') } %>

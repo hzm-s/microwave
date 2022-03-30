@@ -7,8 +7,8 @@
       <%= rf.label :role, t(role_name, scope: [:activerecord, :enums, :team_member_roles, :roles]), class: 'toggle-label' %>
     </div>
   <% end -%>
-  <div class="mt-1 error-message">
-    <% errors.full_messages_for(:roles).each do |msg| %>
+  <div class="mb-1 error-message">
+    <% (errors.full_messages_for(:base) + errors.full_messages_for(:roles)).each do |msg| %>
       <p><%= msg %></p>
     <% end -%>
   </div>
