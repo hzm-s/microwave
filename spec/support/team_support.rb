@@ -5,8 +5,16 @@ module TeamSupport
     sm: :scrum_master,
   }
 
-  def create_team(name: 'the team')
-    Team.create!(name: name)
+  def create_team(name: 'the team', po: nil, sm: nil, dev: [])
+    Team.create!(name: name).tap do |t|
+      po && add_team_member(t, po, :po)
+      sm && add_team_member(t, sm, :sm)
+      dev.each { add_team_member(t, _1, :dev) }
+    end
+  end
+
+  def add_team_member(team, user, *role_short_names)
+    team.add_member(user: user, roles: team_member_roles(*role_short_names)).tap { _1.save! }
   end
 
   def team_member(user, *role_short_names)

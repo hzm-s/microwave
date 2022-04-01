@@ -9,6 +9,8 @@ class TeamMember < ApplicationRecord
 
   validates :roles, team_member_role_set: true
 
+  delegate :name, to: :user
+
   def have_role?(role_name)
     roles.include_role?(role_name)
   end
