@@ -1,0 +1,10 @@
+<div class="flex flex-row py-2 px-3 justify-between">
+  <h1 class="font-bold text-lg text-stone-500">
+    microwave
+  </h1>
+  <div>
+    <% if signed_in? %>
+      <%= render partial: 'user_menu' %>
+    <% end -%>
+  </div>
+</div>

@@ -1,4 +1,8 @@
 ja:
+  application:
+    user_menu:
+      sign_out: ログアウト
+
   sessions:
     new:
       sign_in_with_google: Googleでログイン

@@ -1,0 +1,10 @@
+<%= content_tag :div, component_attrs(:dd_container) do %>
+  <%= image_tag current_user.avatar_url, component_attrs(:dd_trigger, { class: 'ml-auto rounded-full w-8 cursor-pointer btn-icon' }) %>
+  <%= content_tag :div, component_attrs(:dd_target, :dd_target_right) do %>
+    <div class="w-48 rounded-lg bg-white mt-1 py-2 flex flex-col border border-solid border-gray-100">
+      <div class="px-3 py-2 hover:bg-gray-100/50 hover-ease">
+        <%= button_to(sign_out_path, method: :delete, form_class: 'h-6') { icon_with_text :sign_out, t('.sign_out'), margin_class: 'gap-x-2' } %>
+      </div>
+    </div>
+  <% end -%>
+<% end -%>

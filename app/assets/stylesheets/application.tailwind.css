@@ -30,6 +30,10 @@
   .link {
     @apply inline-block text-sky-600 underline hover:text-sky-500;
   }
+
+  .hover-ease {
+    @apply transition hover:ease-in;
+  }
 }
 
 @layer base {
