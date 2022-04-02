@@ -9,7 +9,7 @@ class TeamMember < ApplicationRecord
 
   validates :roles, team_member_role_set: true
 
-  delegate :name, :initials, to: :user
+  delegate :name, :avatar_url, to: :user
 
   def have_role?(role_name)
     roles.include_role?(role_name)

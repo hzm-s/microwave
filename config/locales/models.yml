@@ -4,6 +4,7 @@ ja:
       product: プロダクト
       product_goal: プロダクトゴール
       team: チーム
+      team_member: チームメンバー
 
     attributes:
       product:
