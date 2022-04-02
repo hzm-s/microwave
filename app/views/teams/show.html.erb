@@ -9,17 +9,9 @@
     <h3 class="text-label mb-1">
       <%= TeamMember.model_name.human %>
     </h3>
-    <% @team.members.each do |m| %>
-      <div class="flex items-center gap-2">
-        <%= image_tag m.avatar_url, class: 'rounded-full w-10' %>
-        <%= m.name %>
-        <div class="ml-auto">
-          <% m.roles.each do |role| %>
-            <%=t role.role, scope: [:activerecord, :enums, :team_member_roles, :roles] %>
-          <% end -%>
-        </div>
-      </div>
-    <% end -%>
+    <div class="flex flex-col divide-y">
+      <%= render partial: 'member', collection: @team.members %>
+    </div>
   </div>
   <div class="mt-8">
     <h3 class="text-label mb-1">

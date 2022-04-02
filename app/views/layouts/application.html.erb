@@ -12,7 +12,7 @@
   </head>
   <body class="bg">
     <%= render partial: 'global_nav' %>
-    <div class="mt-8">
+    <div class="mt-1">
       <div class="flex flex-col mb-2">
         <div class="mx-auto w-full <%= content_for?(:page_class) ? yield(:page_class) : 'lg:w-[64rem]' %>">
           <%= yield %>
