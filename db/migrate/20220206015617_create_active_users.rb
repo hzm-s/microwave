@@ -4,7 +4,7 @@ class CreateActiveUsers < ActiveRecord::Migration[7.0]
       t.references :user, type: :uuid, null: false, foreign_key: true
       t.string :email, null: false
       t.string :name, null: false
-      t.string :initials, null: false
+      t.string :avatar_url, null: false
 
       t.timestamps
     end

@@ -11,6 +11,10 @@ class CancelledUser < ApplicationRecord
     nil
   end
 
+  def avatar_url
+    nil
+  end
+
   def accounts
     []
   end

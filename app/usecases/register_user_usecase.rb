@@ -1,6 +1,6 @@
 class RegisterUserUsecase < BaseUsecase
-  def perform(name:, email:, account:)
-    user = User.activate(name: name, email: email, account: account)
+  def perform(name:, email:, avatar_url:, account:)
+    user = User.activate(name: name, email: email, avatar_url: avatar_url, account: account)
 
     if user.save
       succeeded(user: user)

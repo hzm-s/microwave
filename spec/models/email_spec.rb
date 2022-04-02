@@ -9,13 +9,4 @@ describe Email do
       end
     end
   end
-
-  describe 'initials' do
-    it do
-      aggregate_failures do
-        expect(described_class.new('user.name@example.com').initials).to eq 'un'
-        expect(described_class.new('user_name@example.com').initials).to eq 'us'
-      end
-    end
-  end
 end

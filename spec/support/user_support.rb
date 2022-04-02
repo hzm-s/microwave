@@ -5,6 +5,7 @@ module UserSupport
     attrs = {
       name: auth_hash['info']['name'],
       email: auth_hash['info']['email'],
+      avatar_url: auth_hash['info']['image'],
       account: Account.new(provider: auth_hash['provider'], uid: auth_hash['uid']),
     }
     FindOrRegisterUserUsecase.perform(**attrs).user

@@ -5,6 +5,7 @@ class OauthCallbackController < ApplicationController
     result = FindOrRegisterUserUsecase.perform(
       name: auth_hash.name,
       email: auth_hash.email,
+      avatar_url: auth_hash.info.image,
       account: Account.new(auth_hash.account),
     )
     sign_in(result.user)

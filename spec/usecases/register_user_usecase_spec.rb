@@ -3,11 +3,12 @@ require 'rails_helper'
 describe RegisterUserUsecase do
   let(:name) { 'user name' }
   let(:email) { 'user@example.com' }
+  let(:avatar_url) { 'http://avatar.url' }
   let(:account) { Account.new(provider: 'google', uid: 'uid123456789') }
 
   context 'valid params' do
     it do
-      result = described_class.perform(name: name, email: email, account: account)
+      result = described_class.perform(name: name, email: email, avatar_url: avatar_url, account: account)
 
       aggregate_failures do
         expect(result).to be_succeeded
@@ -15,6 +16,7 @@ describe RegisterUserUsecase do
         user = User.find(result.user.id)
         expect(user.name.to_s).to eq name
         expect(user.email.to_s).to eq email
+        expect(user.avatar_url.to_s).to eq avatar_url
         expect(user.accounts[0].provider).to eq account[:provider]
         expect(user.accounts[0].uid).to eq account[:uid]
       end
@@ -23,7 +25,7 @@ describe RegisterUserUsecase do
 
   context 'invalid params' do
     it do
-      result = described_class.perform(name: name, email: '', account: account)
+      result = described_class.perform(name: name, email: '', avatar_url: avatar_url, account: account)
 
       aggregate_failures do
         expect(result).to_not be_succeeded

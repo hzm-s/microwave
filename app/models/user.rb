@@ -2,11 +2,11 @@ class User < ApplicationRecord
   has_one :active_user, dependent: :destroy, autosave: true
   has_one :cancelled_user, dependent: :destroy
 
-  delegate :name, :email, :accounts, to: :user_with_status
+  delegate :name, :email, :accounts, :avatar_url, to: :user_with_status
 
   class << self
-    def activate(name:, email:, account:)
-      active_user = ActiveUser.new_with_account(name: name, email: email, account: account)
+    def activate(name:, email:, avatar_url:, account:)
+      active_user = ActiveUser.new_with_account(name: name, email: email, avatar_url: avatar_url, account: account)
       new { _1.active_user = active_user }
     end
 

@@ -8,10 +8,9 @@ class ActiveUser < ApplicationRecord
   validates :email, presence: true, domain_object: true
 
   class << self
-    def new_with_account(name:, email:, account:)
-      new(name: name, email: email) do |au|
+    def new_with_account(name:, email:, avatar_url:, account:)
+      new(name: name, email: email, avatar_url: avatar_url) do |au|
         au.accounts << account
-        au.initials = au.email&.initials
       end
     end
   end

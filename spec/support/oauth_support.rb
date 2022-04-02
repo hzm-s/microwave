@@ -13,6 +13,7 @@ module OauthSupport
       'info' => {
         'name' => account.user.name,
         'email' => account.user.email,
+        'image' => account.user.avatar_url,
       }
     }
   end
@@ -29,4 +30,5 @@ OmniAuthTestHelper.register_generator do |g|
   g.for(:uid) { SecureRandom.base64(14) }
   g.for(:name) { |h| "ユーザー #{h[:uid][0, 5]}"  }
   g.for(:email) { |h| "#{h[:uid]}@gmail.com" }
+  g.for(:image) { |h| "http://user.image/#{h[:uid]}" }
 end
