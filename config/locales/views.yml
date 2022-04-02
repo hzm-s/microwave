@@ -20,6 +20,9 @@ ja:
   teams:
     new:
       title: 新しいチーム
+    show:
+      invitaion_link: メンバーの追加
+      how_to_invitation: このリンクをチームに招待するユーザーに共有してください
 
   team:
     members:

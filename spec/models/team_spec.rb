@@ -15,6 +15,12 @@ describe Team do
         expect(team.members[0].roles.map(&:role)).to eq %w(product_owner)
       end
     end
+
+    it do
+      team.add_member(user: user, roles: team_member_roles(:po))
+      team.add_member(user: user, roles: team_member_roles(:po))
+      expect(team).to_not be_valid
+    end
   end
 
   describe 'query member' do
