@@ -6,7 +6,19 @@ describe '/team/:team_id/members' do
 
   before { sign_in(user) }
 
-  describe 'POST' do
+  describe 'new' do
+    it do
+      add_team_member(team, user, :po)
+
+      get new_team_member_path(team_id: team.id)
+
+      aggregate_failures do
+        expect(response.body).to include t_model_error(:team, :members, :already_added)
+      end
+    end
+  end
+
+  describe 'create' do
     let(:valid) do
       {
         roles_attributes: {

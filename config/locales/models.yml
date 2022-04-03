@@ -26,6 +26,7 @@ ja:
         team:
           attributes:
             members:
+              already_added: すでにメンバーです
               appropriate_number_of_role: "%{role}は%{number}人まで参加できます"
 
         team_member:
