@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_19_012508) do
+ActiveRecord::Schema.define(version: 2022_04_03_011243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2022_03_19_012508) do
     t.uuid "user_id", null: false
     t.datetime "cancelled_at", precision: 6, null: false
     t.index ["user_id"], name: "index_cancelled_users_on_user_id"
+  end
+
+  create_table "development_teams", force: :cascade do |t|
+    t.uuid "product_id", null: false
+    t.uuid "team_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_development_teams_on_product_id"
+    t.index ["team_id"], name: "index_development_teams_on_team_id"
   end
 
   create_table "product_goals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -91,6 +100,8 @@ ActiveRecord::Schema.define(version: 2022_03_19_012508) do
   add_foreign_key "accounts", "active_users"
   add_foreign_key "active_users", "users"
   add_foreign_key "cancelled_users", "users"
+  add_foreign_key "development_teams", "products"
+  add_foreign_key "development_teams", "teams"
   add_foreign_key "product_goals", "products"
   add_foreign_key "team_member_roles", "team_members"
   add_foreign_key "team_members", "teams"
