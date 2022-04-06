@@ -15,6 +15,7 @@ ja:
   products:
     show:
       new_product_goal: 新しいプロダクトゴールを追加する
+      join_to_development: プロダクト開発に参加する
 
   product:
     goals:
