@@ -3,7 +3,6 @@ require 'rails_helper'
 describe '/teams' do
   describe 'create' do
     let(:user) { sign_up }
-
     before { sign_in(user) }
 
     let(:valid) do
@@ -48,6 +47,20 @@ describe '/teams' do
         expect(response.body).to include po.name
         expect(response.body).to include dev.name
         expect(response.body).to include sm.name
+      end
+    end
+  end
+
+  describe 'new' do
+    let(:user) { sign_up }
+    before { sign_in(user) }
+
+    context 'already be team member' do
+      it do
+        create_team(po: user)
+
+        get new_team_path
+        expect(response.body).to include t_model_error(:team, :members, :already_other_team_member)
       end
     end
   end

@@ -1,8 +1,10 @@
 class User < ApplicationRecord
   has_one :active_user, dependent: :destroy, autosave: true
   has_one :cancelled_user, dependent: :destroy
+  has_one :team_member
 
   delegate :name, :email, :accounts, :avatar_url, to: :user_with_status
+  delegate :team, to: :team_member, allow_nil: true
 
   class << self
     def activate(name:, email:, avatar_url:, account:)

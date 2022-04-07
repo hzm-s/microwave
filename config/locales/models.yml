@@ -28,6 +28,7 @@ ja:
           attributes:
             members:
               already_added: すでにメンバーです
+              already_other_team_member: 他のチームのメンバーは登録できません
               appropriate_number_of_role: "%{role}は%{number}人まで参加できます"
 
         team_member:
