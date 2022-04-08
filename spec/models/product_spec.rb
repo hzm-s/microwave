@@ -45,5 +45,12 @@ describe Product do
     end
   end
 
-  let(:product) { described_class.create!(name: name, vision: vision) }
+  describe 'add development team' do
+    it do
+      product = described_class.create!(name: 'the product', vision: 'vision')
+      team = create_team
+      product.teams << team
+      expect { product.teams << team }.to raise_error ActiveRecord::RecordNotUnique
+    end
+  end
 end

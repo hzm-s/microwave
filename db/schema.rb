@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2022_04_03_011243) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["product_id"], name: "index_development_teams_on_product_id"
     t.index ["team_id"], name: "index_development_teams_on_team_id"
+    t.index ["team_id"], name: "unique_index_development_teams_on_team_id", unique: true
   end
 
   create_table "product_goals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

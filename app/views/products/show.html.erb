@@ -16,6 +16,9 @@
       <h3 class="text-label mb-1">
         <%= DevelopmentTeam.model_name.human %>
       </h3>
+      <% @product.teams.each do |team| %>
+        <%= team.name %>
+      <% end -%>
       <%= button_to t('.join_to_development'), '', class: 'btn-sm btn-primary' %>
     </div>
     <div>
