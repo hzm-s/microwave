@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe '/products' do
-  describe 'POST' do
+  describe 'create' do
     let(:valid) do
       {
         name: 'cool_product',

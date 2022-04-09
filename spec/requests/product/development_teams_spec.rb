@@ -12,7 +12,11 @@ describe '/team/development_teams' do
       post product_development_teams_path(product_id: product.id)
 
       get product_path(product)
-      expect(response.body).to include team.name.to_s
+
+      aggregate_failures do
+        expect(response.body).to include team.name.to_s
+        expect(response.body).to_not include 'test-new-development-team'
+      end
     end
   end
 end
