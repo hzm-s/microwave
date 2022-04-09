@@ -17,7 +17,7 @@
         <%= DevelopmentTeam.model_name.human %>
       </h3>
       <% @product.teams.each do |team| %>
-        <%= render partial: 'teams/summary', locals: { team: team } %>
+        <%= link_to team.name, team_path(team.id), class: 'nf font-bold block' %>
       <% end -%>
       <% unless DevelopmentTeam.exists?(team: current_user.team) %>
         <%= button_to t('.join_to_development'), product_development_teams_path(product_id: @product), class: 'btn-sm btn-primary', data: { test_new_development_team: 1 } %>
