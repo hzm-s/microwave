@@ -1,7 +1,7 @@
 class TeamMember < ApplicationRecord
   belongs_to :team
   belongs_to :user
-  has_many :roles, class_name: 'TeamMemberRole' do
+  has_many :roles, class_name: 'TeamMemberRole', dependent: :destroy do
     def include_role?(role_name)
       any? { _1.role == role_name.to_s }
     end

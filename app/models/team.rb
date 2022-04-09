@@ -1,5 +1,6 @@
 class Team < ApplicationRecord
-  has_many :members, -> { extending TeamMemberCollection }, class_name: 'TeamMember'
+  has_many :members, -> { extending TeamMemberCollection }, class_name: 'TeamMember', dependent: :destroy
+  has_one :development_team, dependent: :destroy
 
   attribute :name, :name
 
