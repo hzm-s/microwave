@@ -31,6 +31,10 @@
     @apply inline-block text-sky-600 underline hover:text-sky-500;
   }
 
+  .silent-link {
+    @apply inline-block text-gray-800 underline hover:text-gray-800;
+  }
+
   .hover-ease {
     @apply transition hover:ease-in;
   }

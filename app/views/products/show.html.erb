@@ -16,11 +16,17 @@
       <h3 class="text-label mb-1">
         <%= DevelopmentTeam.model_name.human %>
       </h3>
-      <% @product.teams.each do |team| %>
-        <%= link_to team.name, team_path(team.id), class: 'nf font-bold block' %>
+      <% if @product.teams.any? %>
+        <% @product.teams.each do |team| %>
+          <%= link_to team.name, team_path(team.id), class: 'nf text-lg font-bold silent-link' %>
+        <% end -%>
+      <% else -%>
+        <p class="text-gray-500 text-sm">
+          <%=t '.no_any_teams' %>
+        </p>
       <% end -%>
       <% unless DevelopmentTeam.exists?(team: current_user.team) %>
-        <%= button_to t('.join_to_development'), product_development_teams_path(product_id: @product), class: 'btn-sm btn-primary', data: { test_new_development_team: 1 } %>
+        <%= button_to t('.join_to_development'), product_development_teams_path(product_id: @product), class: 'mt-1 btn-sm btn-primary', data: { test_new_development_team: 1 } %>
       <% end -%>
     </div>
     <div>
