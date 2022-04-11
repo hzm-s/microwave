@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2022_04_03_011243) do
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "vision", null: false
+    t.uuid "owner_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -104,6 +105,7 @@ ActiveRecord::Schema.define(version: 2022_04_03_011243) do
   add_foreign_key "development_teams", "products"
   add_foreign_key "development_teams", "teams"
   add_foreign_key "product_goals", "products"
+  add_foreign_key "products", "users", column: "owner_id"
   add_foreign_key "team_member_roles", "team_members"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
