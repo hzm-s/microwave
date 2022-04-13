@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
+    @product = Product.new(product_params.merge(owner: current_user))
     if @product.save
       redirect_to dashboard_path
     else

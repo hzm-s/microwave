@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe '/products' do
+  let(:user) { sign_up }
+  before { sign_in(user) }
+
   describe 'create' do
     let(:valid) do
       {
