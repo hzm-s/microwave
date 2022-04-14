@@ -1,6 +1,7 @@
 module ProductSupport
-  def create_product(name: 'product', vision: 'vision')
-    Product.create!(name: name, vision: vision)
+  def create_product(name: 'product', vision: 'vision', owner: nil)
+    owner ||= sign_up
+    Product.create!(owner: owner, name: name, vision: vision)
   end
 
   def create_product_goals(product, goal_contents)
