@@ -72,10 +72,10 @@ ActiveRecord::Schema.define(version: 2022_04_03_011243) do
 
   create_table "team_member_roles", force: :cascade do |t|
     t.bigint "team_member_id"
-    t.integer "role", null: false
+    t.integer "role_type", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["team_member_id", "role"], name: "index_team_member_roles_on_team_member_id_and_role", unique: true
+    t.index ["team_member_id", "role_type"], name: "index_team_member_roles_on_team_member_id_and_role_type", unique: true
     t.index ["team_member_id"], name: "index_team_member_roles_on_team_member_id"
   end
 
