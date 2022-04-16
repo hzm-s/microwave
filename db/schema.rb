@@ -65,17 +65,16 @@ ActiveRecord::Schema.define(version: 2022_04_03_011243) do
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "vision", null: false
-    t.uuid "owner_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "team_member_roles", force: :cascade do |t|
     t.bigint "team_member_id"
-    t.integer "role_type", null: false
+    t.integer "role", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["team_member_id", "role_type"], name: "index_team_member_roles_on_team_member_id_and_role_type", unique: true
+    t.index ["team_member_id", "role"], name: "index_team_member_roles_on_team_member_id_and_role", unique: true
     t.index ["team_member_id"], name: "index_team_member_roles_on_team_member_id"
   end
 
@@ -105,7 +104,6 @@ ActiveRecord::Schema.define(version: 2022_04_03_011243) do
   add_foreign_key "development_teams", "products"
   add_foreign_key "development_teams", "teams"
   add_foreign_key "product_goals", "products"
-  add_foreign_key "products", "users", column: "owner_id"
   add_foreign_key "team_member_roles", "team_members"
   add_foreign_key "team_members", "teams"
   add_foreign_key "team_members", "users"
