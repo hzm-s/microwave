@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_07_101550) do
+ActiveRecord::Schema.define(version: 2022_03_12_044304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -35,14 +35,13 @@ ActiveRecord::Schema.define(version: 2022_02_07_101550) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_active_users_on_email", unique: true
-    t.index ["user_id"], name: "index_active_users_on_user_id"
-    t.index ["user_id"], name: "unique_key_active_users_on_user_id", unique: true
+    t.index ["user_id"], name: "index_active_users_on_user_id", unique: true
   end
 
   create_table "cancelled_users", force: :cascade do |t|
     t.uuid "user_id", null: false
     t.datetime "cancelled_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_cancelled_users_on_user_id"
+    t.index ["user_id"], name: "index_cancelled_users_on_user_id", unique: true
   end
 
   create_table "product_goals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -55,6 +54,12 @@ ActiveRecord::Schema.define(version: 2022_02_07_101550) do
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "vision", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "teams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
