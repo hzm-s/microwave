@@ -1,0 +1,2 @@
+class ProductDevelopment < ApplicationRecord
+end
