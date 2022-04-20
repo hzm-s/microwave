@@ -1,0 +1,2 @@
+class ProductOwner < ApplicationRecord
+end
