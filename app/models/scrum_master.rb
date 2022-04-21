@@ -1,0 +1,2 @@
+class ScrumMaster < ApplicationRecord
+end
