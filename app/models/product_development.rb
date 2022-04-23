@@ -1,2 +1,0 @@
-class ProductDevelopment < ApplicationRecord
-end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_17_012826) do
+ActiveRecord::Schema.define(version: 2022_04_20_092733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -44,11 +44,13 @@ ActiveRecord::Schema.define(version: 2022_04_17_012826) do
     t.index ["user_id"], name: "index_cancelled_users_on_user_id", unique: true
   end
 
-  create_table "product_developments", force: :cascade do |t|
-    t.uuid "product_id", null: false
+  create_table "developers", force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "team_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_product_developments_on_product_id", unique: true
+    t.index ["team_id"], name: "index_developers_on_team_id"
+    t.index ["user_id"], name: "index_developers_on_user_id"
   end
 
   create_table "product_goals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -58,11 +60,27 @@ ActiveRecord::Schema.define(version: 2022_04_17_012826) do
     t.index ["product_id"], name: "index_product_goals_on_product_id"
   end
 
+  create_table "product_owners", force: :cascade do |t|
+    t.uuid "product_id", null: false
+    t.uuid "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_product_owners_on_product_id", unique: true
+    t.index ["user_id"], name: "index_product_owners_on_user_id"
+  end
+
   create_table "products", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "vision", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "scrum_masters", force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_scrum_masters_on_user_id", unique: true
   end
 
   create_table "teams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -78,6 +96,10 @@ ActiveRecord::Schema.define(version: 2022_04_17_012826) do
   add_foreign_key "accounts", "active_users"
   add_foreign_key "active_users", "users"
   add_foreign_key "cancelled_users", "users"
-  add_foreign_key "product_developments", "products"
+  add_foreign_key "developers", "teams"
+  add_foreign_key "developers", "users"
   add_foreign_key "product_goals", "products"
+  add_foreign_key "product_owners", "products"
+  add_foreign_key "product_owners", "users"
+  add_foreign_key "scrum_masters", "users"
 end
