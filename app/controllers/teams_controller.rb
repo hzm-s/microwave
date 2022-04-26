@@ -8,12 +8,12 @@ class TeamsController < ApplicationController
   end
 
   def new
-    @form = RegisterTeamForm.new
+    @team = Team.new
   end
 
   def create
-    @form = RegisterTeamForm.new(register_params)
-    if @form.valid? && create_team(current_user, @form).succeeded?
+    @team = Team.new(team_params)
+    if @team.save
       redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entity
@@ -22,15 +22,7 @@ class TeamsController < ApplicationController
 
   private
 
-  def create_team(user, form)
-    RegisterTeamWithMemberUsecase.perform(
-      name: form.name,
-      user: user,
-      roles: form.selected_roles,
-    )
-  end
-
-  def register_params
-    params.require(:form).permit(*RegisterTeamForm.parameters)
+  def team_params
+    params.require(:team).permit(:name)
   end
 end

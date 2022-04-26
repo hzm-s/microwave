@@ -8,17 +8,12 @@ describe '/teams' do
     let(:valid) do
       {
         name: 'THE_RIGHT_TEAM',
-        roles_attributes: {
-          '0' => { role: 'product_owner' },
-          '1' => { role: '' },
-          '2' => { role: '' },
-        }
       }
     end
 
     context 'given valid params' do
       it do
-        post teams_path, params: { form: valid }
+        post teams_path, params: { team: valid }
 
         get teams_path
         expect(response.body).to include valid[:name]
@@ -27,13 +22,13 @@ describe '/teams' do
 
     context 'given invalid params' do
       it do
-        post teams_path, params: { form: valid.merge(name: '') }
+        post teams_path, params: { team: valid.merge(name: '') }
         expect(response.body).to include I18n.t('errors.messages.blank')
       end
     end
   end
 
-  describe 'show' do
+  xdescribe 'show' do
     it do
       po = sign_up
       dev = sign_up
@@ -47,20 +42,6 @@ describe '/teams' do
         expect(response.body).to include po.name
         expect(response.body).to include dev.name
         expect(response.body).to include sm.name
-      end
-    end
-  end
-
-  describe 'new' do
-    let(:user) { sign_up }
-    before { sign_in(user) }
-
-    context 'already be team member' do
-      it do
-        create_team(po: user)
-
-        get new_team_path
-        expect(response.body).to include t_model_error(:team, :members, :already_other_team_member)
       end
     end
   end

@@ -15,8 +15,6 @@ ja:
         content: プロダクトゴール
       team:
         name: チーム名
-      team_member:
-        roles: 役割
 
     errors:
       models:
@@ -39,18 +37,8 @@ ja:
               less_than_three: は2つまで指定できます
               can_not_be_po_and_dev: にプロダクトオーナーと開発者は指定できません
 
-    enums:
-      team_member_roles:
-        roles:
-          product_owner: プロダクトオーナー
-          developer: 開発者
-          scrum_master: スクラムマスター
-
   activemodel:
     attributes:
-      register_team_form:
-        name: チーム名
-        roles: あなたの役割
       team_member_form:
         roles: あなたの役割
 
