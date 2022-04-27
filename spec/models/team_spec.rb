@@ -22,7 +22,7 @@ describe Team do
         9.times { t.add_developer(sign_up) }
         t.validate
       end
-      expect(team.errors[:developers]).to include t_model_error(:team, :members, :appropriate_number_of_role, role: '開発者', number: 8)
+      expect(team.errors[:developers]).to include t_model_error(:team, :developers, :too_many)
     end
   end
 end
