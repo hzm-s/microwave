@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   end
 
   resources :teams, only: [:index, :new, :create, :show] do
-    resources :members, only: [:new, :create], module: :team
+    resources :developers, only: [:new, :create], module: :team
   end
 
   resources :product_backlog_items, only: [:new, :create]
