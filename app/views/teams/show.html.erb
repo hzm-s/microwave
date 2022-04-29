@@ -10,17 +10,17 @@
   <div class="flex flex-col gap-8">
     <div>
       <h3 class="text-label mb-1">
-        <%= TeamMember.model_name.human %>
+        <%= Developer.model_name.human %>
       </h3>
       <div class="flex flex-col divide-y">
-        <%= render partial: 'member', collection: @team.members %>
+        <%= render partial: 'developer', collection: @team.developers %>
       </div>
     </div>
     <div>
       <h3 class="text-label mb-1">
         <%=t '.invitaion_link' %>
       </h3>
-      <%= link_to t('.how_to_invitation'), new_team_member_url(team_id: @team.id), class: 'link' %>
+      <%= link_to t('.how_to_invitation'), new_team_developer_url(team_id: @team.id), class: 'link' %>
     </div>
   </div>
 </div>
