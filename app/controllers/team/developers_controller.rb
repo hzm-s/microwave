@@ -4,6 +4,7 @@ class Team::DevelopersController < ApplicationController
   def create
     result = AddDeveloperUsecase.perform(team: current_team, user: current_user)
     if result.succeeded?
+      redirect_to team_path(current_team)
     else
       @errors = result.team.errors
       render :new, status: :unprocessable_entity

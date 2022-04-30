@@ -5,7 +5,7 @@ ja:
       product_goal: プロダクトゴール
       development_team: 開発チーム
       team: チーム
-      team_member: チームメンバー
+      developer: 開発者
 
     attributes:
       product:

@@ -22,8 +22,8 @@ describe '/team/:team_id/developers' do
     context 'precondition is satisfied' do
       it do
         post team_developers_path(team_id: team.id)
+        follow_redirect!
 
-        get team_path(team.id)
         expect(response.body).to include user.name
       end
     end

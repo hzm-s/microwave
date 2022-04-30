@@ -13,12 +13,18 @@
         <%= Developer.model_name.human %>
       </h3>
       <div class="flex flex-col divide-y">
-        <%= render partial: 'developer', collection: @team.developers %>
+        <% if @team.developers.any? %>
+          <%= render partial: 'developer', collection: @team.developers %>
+        <% else %>
+          <p class="text-gray-500">
+            <%=t '.no_any_developers' %>
+          </p>
+        <% end %>
       </div>
     </div>
     <div>
       <h3 class="text-label mb-1">
-        <%=t '.invitaion_link' %>
+        <%=t '.add_developer' %>
       </h3>
       <%= link_to t('.how_to_invitation'), new_team_developer_url(team_id: @team.id), class: 'link' %>
     </div>
