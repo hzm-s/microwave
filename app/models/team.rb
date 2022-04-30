@@ -10,6 +10,10 @@ class Team < ApplicationRecord
     self.developers.build(user: user)
   end
 
+  def developer?(user_id)
+    developers.exists?(user_id: user_id)
+  end
+
   private
 
   def appropriate_number_of_developers

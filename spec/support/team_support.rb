@@ -13,8 +13,8 @@ module TeamSupport
     end
   end
 
-  def add_team_member(team, user, *role_short_names)
-    team.add_member(user: user, roles: team_member_roles(*role_short_names)).tap { _1.save! }
+  def add_developer(team, user)
+    team.add_developer(user).tap { _1.save! }
   end
 
   def team_member(user, *role_short_names)

@@ -8,9 +8,9 @@
   </p>
 </div>
 <div class="sheet-form">
-  <%# if current_team.member?(current_user.id) %>
-    <%#=t :already_added, scope: %w(activerecord errors models team attributes members) %>
-  <%# else %>
+  <% if current_team.developer?(current_user.id) %>
+    <%=t :already_joined, scope: %w(activerecord errors models team attributes developers) %>
+  <% else %>
     <%= form_with url: team_developers_path(team_id: current_team.id) do |f| %>
       <% if Array(@errors).any? %>
         <% @errors.full_messages.each do |msg| %>
@@ -19,6 +19,6 @@
       <% end -%>
       <%= f.button t('.submit'), class: 'btn btn-primary' %>
     <% end -%>
-  <%# end %>
+  <% end %>
 </div>
 <%= link_to(dashboard_path, class: 'mt-3 link') { icon_with_text :reply, t('helpers.nav.back') } %>

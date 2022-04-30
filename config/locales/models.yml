@@ -26,7 +26,7 @@ ja:
           attributes:
             developers:
               too_many: 開発者は8人まで参加できます
-              already_added: すでにメンバーです
+              already_joined: すでに開発者として参加済みです
               already_other_team_member: 他のチームのメンバーは登録できません
 
         team_member:

@@ -6,14 +6,14 @@ describe '/team/:team_id/developers' do
 
   before { sign_in(user) }
 
-  xdescribe 'new' do
+  describe 'new' do
     it do
-      add_team_member(team, user, :po)
+      add_developer(team, user)
 
-      get new_team_member_path(team_id: team.id)
+      get new_team_developer_path(team_id: team.id)
 
       aggregate_failures do
-        expect(response.body).to include t_model_error(:team, :members, :already_added)
+        expect(response.body).to include t_model_error(:team, :developers, :already_joined)
       end
     end
   end
