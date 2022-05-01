@@ -29,13 +29,10 @@ ja:
               already_joined: すでに開発者として参加済みです
               already_other_team_member: 他のチームのメンバーは登録できません
 
-        team_member:
+        product_owner:
           attributes:
-            roles:
-              empty: を指定してください
-              duplicated: が重複しています
-              less_than_three: は2つまで指定できます
-              can_not_be_po_and_dev: にプロダクトオーナーと開発者は指定できません
+            user:
+              already_other_product_owner: 別のプロダクトのプロダクトオーナーです
 
   activemodel:
     attributes:
