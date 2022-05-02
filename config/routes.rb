@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'dashboard#show', as: :dashboard
 
   resources :products, only: [:index, :show, :new, :create] do
+    resource :owner, only: [:show, :create], module: :product
     resources :goals, only: [:index, :new, :create], module: :product
     resources :development_teams, only: [:create], module: :product
 
