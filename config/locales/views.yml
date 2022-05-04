@@ -9,14 +9,16 @@ ja:
 
   dashboard:
     show:
-      new_product: 新しいプロダクトを登録する
-      new_team: 新しいチームを登録する
+      new_product: プロダクトを登録する
+      new_team: チームを登録する
 
   products:
+    new:
+      title: 新規プロダクト登録
     show:
-      new_product_goal: 新しいプロダクトゴールを追加する
+      new_product_goal: プロダクトゴールを追加する
       join_to_development: プロダクト開発に参加する
-      no_any_teams: 開発チームはいません
+      no_any_teams: 開発チームはありません
 
   product:
     owners:
@@ -28,7 +30,7 @@ ja:
 
   teams:
     new:
-      title: 新しいチーム
+      title: 新規チーム登録
     show:
       no_any_developers: まだ開発者は参加していません
       add_developer: 開発者の追加

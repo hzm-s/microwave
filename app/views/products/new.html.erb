@@ -1,6 +1,6 @@
 <% content_for(:page_class) { 'lg:w-[36rem]' } %>
 <h2 class="text-label text-divider-center mb-1">
-  新しいプロダクト
+  <%=t '.title' %>
 </h2>
 <div class="sheet-form">
   <%= form_with model: @product, scope: :product, url: products_path do |f| %>
