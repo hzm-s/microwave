@@ -1,0 +1,5 @@
+<%= turbo_stream.replace :product_owner do %>
+  <%= turbo_frame_tag :product_owner, src: product_owner_path(product_id: current_product) do %>
+    <%= spinner %>
+  <% end -%>
+<% end -%>

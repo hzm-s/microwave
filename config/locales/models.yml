@@ -3,6 +3,7 @@ ja:
     models:
       product: プロダクト
       product_goal: プロダクトゴール
+      product_owner: プロダクトオーナー
       development_team: 開発チーム
       team: チーム
       developer: 開発者

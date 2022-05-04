@@ -19,6 +19,9 @@ ja:
       no_any_teams: 開発チームはいません
 
   product:
+    owners:
+      show:
+        assume: 引き受ける
     goals:
       index:
         empty: まだプロダクトゴールはありません

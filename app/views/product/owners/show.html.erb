@@ -1,0 +1,12 @@
+<%= turbo_frame_tag :product_owner do %>
+  <% if @product_owner %>
+    <div class="flex flex-row gap-2 items-center">
+      <%= image_tag @product_owner.avatar_url, class: 'rounded-full w-6' %>
+      <p class="nf">
+        <%= @product_owner.name %>
+      </p>
+    </div>
+  <% else -%>
+    <%= button_to t('.assume'), product_owner_path(product_id: current_product), class: 'btn btn-primary' %>
+  <% end -%>
+<% end -%>
