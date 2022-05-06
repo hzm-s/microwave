@@ -16,6 +16,7 @@ ja:
         content: プロダクトゴール
       team:
         name: チーム名
+        developers: 開発者
 
     errors:
       models:
@@ -26,9 +27,13 @@ ja:
         team:
           attributes:
             developers:
-              too_many: 開発者は8人まで参加できます
-              already_joined: すでに開発者として参加済みです
-              already_other_team_member: 他のチームのメンバーは登録できません
+              too_many: は8人まで参加できます
+              already_joined: として既に参加済みです
+
+        developer:
+          attributes:
+            base:
+              already_joined: すでに開発者として、このチームまたは他のチームに参加しています
 
         product_owner:
           attributes:
@@ -37,6 +42,6 @@ ja:
 
   activemodel:
     attributes:
-      team_member_form:
+      add_developer_form:
         roles: あなたの役割
 

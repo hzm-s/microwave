@@ -1,12 +1,16 @@
 class Team::DevelopersController < ApplicationController
   helper_method :current_team
 
+  def new
+    @form = AddDeveloperForm.new(team: current_team, user: current_user).tap { _1.validate }
+  end
+
   def create
-    result = AddDeveloperUsecase.perform(team: current_team, user: current_user)
-    if result.succeeded?
+    @form = AddDeveloperForm.new(team: current_team, user: current_user)
+    if @form.valid? && (result = AddDeveloperUsecase.perform(team: current_team, user: current_user)).succeeded?
       redirect_to team_path(current_team)
     else
-      @errors = result.team.errors
+      result && @form.import_errors(result.team)
       render :new, status: :unprocessable_entity
     end
   end

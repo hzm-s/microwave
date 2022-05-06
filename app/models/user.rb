@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_one :active_user, dependent: :destroy, autosave: true
   has_one :cancelled_user, dependent: :destroy
-  has_one :team_member
+  has_one :developer
 
   delegate :name, :email, :accounts, :avatar_url, to: :user_with_status
   delegate :team, to: :team_member, allow_nil: true
@@ -26,6 +26,11 @@ class User < ApplicationRecord
 
   def user_with_status
     @__user_with_status ||= [active_user, cancelled_user].compact.first
+  end
+
+  def developer?
+    reload
+    developer.present?
   end
 
   def active?

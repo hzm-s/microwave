@@ -12,9 +12,7 @@ describe '/team/:team_id/developers' do
 
       get new_team_developer_path(team_id: team.id)
 
-      aggregate_failures do
-        expect(response.body).to include t_model_error(:team, :developers, :already_joined)
-      end
+      expect(response.body).to include t_model_error(:developer, :base, :already_joined)
     end
   end
 
