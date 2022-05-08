@@ -6,10 +6,11 @@ class Product::OwnersController < ApplicationController
   end
 
   def create
-    product_owner = ProductOwner.new(product: current_product, user: current_user)
-    if product_owner.save
+    @product_owner = ProductOwner.new(product: current_product, user: current_user)
+    if @product_owner.save
       render :create
     else
+      render :create, status: :unprocessable_entity
     end
   end
 

@@ -1,5 +1,11 @@
 <%= turbo_stream.replace :product_owner do %>
-  <%= turbo_frame_tag :product_owner, src: product_owner_path(product_id: current_product) do %>
-    <%= spinner %>
+  <% if @product_owner.errors.empty? %>
+    <%= turbo_frame_tag :product_owner, src: product_owner_path(product_id: current_product) do %>
+      <%= spinner %>
+    <% end -%>
+  <% else -%>
+    <p>
+      <%= @product_owner.errors.full_messages.join('<br>') %>
+    </p>
   <% end -%>
 <% end -%>

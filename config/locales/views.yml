@@ -23,6 +23,7 @@ ja:
   product:
     owners:
       show:
+        not_owned: まだプロダクトオーナーはいません
         assume: 引き受ける
     goals:
       index:

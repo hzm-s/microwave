@@ -37,8 +37,8 @@ ja:
 
         product_owner:
           attributes:
-            user:
-              already_other_product_owner: 別のプロダクトのプロダクトオーナーです
+            base:
+              already_other_product_owner: 他のプロダクトでプロダクトオーナーです
 
   activemodel:
     attributes:

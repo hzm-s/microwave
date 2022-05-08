@@ -7,6 +7,12 @@
       </p>
     </div>
   <% else -%>
-    <%= button_to t('.assume'), product_owner_path(product_id: current_product), class: 'btn btn-primary' %>
+    <% if ProductOwner.can_assume?(current_user.id) %>
+      <%= button_to t('.assume'), product_owner_path(product_id: current_product), class: 'btn btn-primary' %>
+    <% else -%>
+      <p class="text-gray-500">
+        <%=t '.not_owned' %>
+      </p>
+    <% end -%>
   <% end -%>
 <% end -%>
