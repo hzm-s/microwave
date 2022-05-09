@@ -7,15 +7,4 @@
     <%= current_team.name %>
   </p>
 </div>
-<%= form_with model: @form, url: team_developers_path(team_id: @form.team.id) do |f| %>
-  <% if @form.errors.any? %>
-    <% @form.errors.full_messages.each do |msg| %>
-      <p>
-        <%= msg %>
-      </p>
-    <% end -%>
-  <% else -%>
-    <%= f.button t('.submit'), class: 'btn btn-primary' %>
-  <% end %>
-<% end -%>
 <%= link_to(team_path(current_team), class: 'mt-3 link') { icon_with_text :reply, t('helpers.nav.back') } %>

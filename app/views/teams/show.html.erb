@@ -12,21 +12,14 @@
       <h3 class="text-label mb-1">
         <%= Developer.model_name.human %>
       </h3>
-      <div class="flex flex-col divide-y">
-        <% if @team.developers.any? %>
-          <%= render partial: 'developer', collection: @team.developers %>
-        <% else %>
-          <p class="text-gray-500">
-            <%=t '.no_any_developers' %>
-          </p>
-        <% end %>
-      </div>
+      <%= turbo_frame_tag :developers, src: team_developers_path(team_id: @team.id) do %>
+        <%= spinner %>
+      <% end -%>
     </div>
     <div>
       <h3 class="text-label mb-1">
-        <%=t '.add_developer' %>
+        <%= ScrumMaster.model_name.human %>
       </h3>
-      <%= link_to t('.how_to_invitation'), new_team_developer_url(team_id: @team.id), class: 'link' %>
     </div>
   </div>
 </div>

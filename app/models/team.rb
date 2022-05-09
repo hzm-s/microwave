@@ -6,6 +6,8 @@ class Team < ApplicationRecord
   validates :name, presence: true, domain_object: true
   validate { developers.validate }
 
+  delegate :can_join_as_developer?, to: :developers
+
   def add_developer(user)
     self.developers.build(user: user)
   end

@@ -1,0 +1,5 @@
+<%= turbo_stream.replace :developers do %>
+  <%= turbo_frame_tag :developers, src: team_developers_path(team_id: current_team.id) do %>
+    <%= spinner %>
+  <% end -%>
+<% end -%>

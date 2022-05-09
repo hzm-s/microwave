@@ -32,14 +32,13 @@ ja:
   teams:
     new:
       title: 新規チーム登録
-    show:
-      no_any_developers: まだ開発者は参加していません
-      add_developer: 開発者の追加
-      how_to_invitation: このリンクをチームに招待するユーザーに共有してください
 
   team:
     developers:
       new:
         title: チームへの参加
         submit: 開発者として参加する
+      index:
+        no_developers: まだ開発者は参加していません
+        join: チームに参加する
 

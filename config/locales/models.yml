@@ -2,11 +2,12 @@ ja:
   activerecord:
     models:
       product: プロダクト
+      team: チーム
       product_goal: プロダクトゴール
       product_owner: プロダクトオーナー
-      development_team: 開発チーム
-      team: チーム
       developer: 開発者
+      scrum_master: スクラムマスター
+      development_team: 開発チーム
 
     attributes:
       product:

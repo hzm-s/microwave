@@ -1,17 +1,16 @@
 class Team::DevelopersController < ApplicationController
   helper_method :current_team
 
-  def new
-    @form = AddDeveloperForm.new(team: current_team, user: current_user).tap { _1.validate }
+  def index
+    @developers = Developer.where(team_id: current_team.id)
   end
 
   def create
-    @form = AddDeveloperForm.new(team: current_team, user: current_user)
-    if @form.valid? && (result = AddDeveloperUsecase.perform(team: current_team, user: current_user)).succeeded?
-      redirect_to team_path(current_team)
+    result = AddDeveloperUsecase.perform(team: current_team, user: current_user)
+    if result.succeeded?
+      render :create
     else
-      result && @form.import_errors(result.team)
-      render :new, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 

@@ -1,0 +1,16 @@
+<%= turbo_frame_tag :developers do %>
+  <div class="flex flex-col divide-y">
+    <% if @developers.any? %>
+      <%= render partial: 'developer', collection: @developers %>
+    <% else %>
+      <p class="text-gray-500">
+        <%=t '.no_developers' %>
+      </p>
+    <% end %>
+  </div>
+  <% if current_team.can_join_as_developer?(current_user) %>
+    <div class="mt-2">
+      <%= button_to t('.join'), team_developers_url(team_id: current_team.id), class: 'btn-sm btn-primary-outline', data: { test_join_as_dev: 1 } %>
+    </div>
+  <% end -%>
+<% end -%>
