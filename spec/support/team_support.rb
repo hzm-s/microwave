@@ -1,5 +1,5 @@
 module TeamSupport
-  def create_team(name: 'the team', po: nil, sm: nil, dev: [])
+  def create_team(name: default_team_name, po: nil, sm: nil, dev: [])
     Team.create!(name: name).tap do |t|
       #po && add_team_member(t, po, :po)
       #sm && add_team_member(t, sm, :sm)
@@ -9,6 +9,12 @@ module TeamSupport
 
   def add_developer(team, user)
     team.add_developer(user).tap { _1.save! }
+  end
+
+  private
+
+  def default_team_name
+    "the team #{Team.count + 1}"
   end
 end
 
