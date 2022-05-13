@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :teams, only: [:index, :new, :create, :show] do
     resources :developers, only: [:index, :new, :create], module: :team
+    resource :scrum_master, only: [:show, :create], module: :team
   end
 
   resources :product_backlog_items, only: [:new, :create]

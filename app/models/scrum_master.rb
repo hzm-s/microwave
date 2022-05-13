@@ -3,6 +3,8 @@ class ScrumMaster < ApplicationRecord
   has_many :leadings, class_name: 'TeamLeading', dependent: :destroy
   has_many :teams, through: :leadings
 
+  delegate :avatar_url, :name, to: :user
+
   validate do
     if teams.size != teams.uniq.size
       errors.add(:base, :duplicated_team)

@@ -41,4 +41,7 @@ ja:
       index:
         no_developers: まだ開発者は参加していません
         join: チームに参加する
+    scrum_masters:
+      show:
+        no_scrum_master: まだスクラムマスターは参加していません
 

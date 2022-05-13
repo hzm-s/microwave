@@ -20,6 +20,9 @@
       <h3 class="text-label mb-1">
         <%= ScrumMaster.model_name.human %>
       </h3>
+      <%= turbo_frame_tag :scrum_master, src: team_scrum_master_path(team_id: @team.id) do %>
+        <%= spinner %>
+      <% end -%>
     </div>
   </div>
 </div>

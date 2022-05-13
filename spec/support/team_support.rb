@@ -11,6 +11,11 @@ module TeamSupport
     team.add_developer(user).tap { _1.save! }
   end
 
+  def add_scrum_master(team, user)
+    ScrumMaster.find_or_create_by(user: user)
+      .add_team(team)
+  end
+
   private
 
   def default_team_name
