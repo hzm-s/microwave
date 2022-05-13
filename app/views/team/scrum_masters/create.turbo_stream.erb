@@ -1,0 +1,5 @@
+<%= turbo_stream.replace :scrum_master do %>
+    <%= turbo_frame_tag :scrum_master, src: team_scrum_master_path(team_id: current_team) do %>
+      <%= spinner %>
+    <% end -%>
+<% end -%>
