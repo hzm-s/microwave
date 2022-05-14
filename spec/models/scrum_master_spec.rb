@@ -12,7 +12,10 @@ describe ScrumMaster do
       sm.add_team(team_a)
       sm.add_team(team_a)
 
-      expect(sm).to_not be_valid
+      aggregate_failures do
+        expect(sm).to_not be_valid
+        expect(sm.errors[:base]).to include t_model_error(:scrum_master, :base, :duplicated_team)
+      end
     end
   end
 end

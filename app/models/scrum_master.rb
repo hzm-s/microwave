@@ -6,12 +6,13 @@ class ScrumMaster < ApplicationRecord
   delegate :avatar_url, :name, to: :user
 
   validate do
-    if teams.size != teams.uniq.size
+    team_ids = leadings.map(&:team_id)
+    if team_ids.size != team_ids.uniq.size
       errors.add(:base, :duplicated_team)
     end
   end
 
   def add_team(team)
-    teams << team
+    self.leadings.build(team: team)
   end
 end
