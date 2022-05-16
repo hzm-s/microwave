@@ -44,4 +44,5 @@ ja:
     scrum_masters:
       show:
         no_scrum_master: まだスクラムマスターは参加していません
+        join: チームに参加する
 

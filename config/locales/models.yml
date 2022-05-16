@@ -41,6 +41,11 @@ ja:
             base:
               already_other_product_owner: 他のプロダクトでプロダクトオーナーです
 
+        scrum_master:
+          attributes:
+            base:
+              duplicated_team: すでにスクラムマスターとして参加しています
+
   activemodel:
     attributes:
       add_developer_form:

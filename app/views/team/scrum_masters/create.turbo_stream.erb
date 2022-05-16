@@ -1,5 +1,11 @@
 <%= turbo_stream.replace :scrum_master do %>
+  <% if @scrum_master.errors.empty? %>
     <%= turbo_frame_tag :scrum_master, src: team_scrum_master_path(team_id: current_team) do %>
       <%= spinner %>
     <% end -%>
+  <% else %>
+    <p>
+      <%= @scrum_master.errors.full_messages.join('<br>') %>
+    </p>
+  <% end %>
 <% end -%>

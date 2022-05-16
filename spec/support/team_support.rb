@@ -12,8 +12,10 @@ module TeamSupport
   end
 
   def add_scrum_master(team, user)
-    ScrumMaster.find_or_create_by(user: user)
-      .add_team(team)
+    ScrumMaster.find_or_create_by(user: user).tap do
+      _1.add_team(team)
+      _1.save!
+    end
   end
 
   private
