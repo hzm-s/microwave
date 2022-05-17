@@ -15,4 +15,8 @@ class ScrumMaster < ApplicationRecord
   def add_team(team)
     self.leadings.build(team: team)
   end
+
+  def can_lead?(team)
+    !self.leadings.exists?(team: team)
+  end
 end

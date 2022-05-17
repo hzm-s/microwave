@@ -15,11 +15,9 @@
       <%=t '.no_scrum_master' %>
     </p>
   <% end %>
-  <%# if current_team.can_join_as_scrum_master?(current_user) %>
-  <!--
+  <% if current_scrum_master&.can_lead?(current_team) %>
     <div class="mt-2">
-      <%#= button_to t('.join'), team_scrum_master_url(team_id: current_team.id), class: 'btn-sm btn-primary-outline', data: { test_join_as_sm: 1 } %>
+      <%= button_to t('.join'), team_scrum_master_url(team_id: current_team.id), class: 'btn-sm btn-primary-outline', data: { test_join_as_sm: 1 } %>
     </div>
-  -->
-  <%# end -%>
+  <% end -%>
 <% end -%>
